@@ -1,7 +1,8 @@
-#'  Calculate the joint distribution
+#'  Calculates the joint distribution and checks for the FSD
 #'
 #'  This function takes two random prospects by their outcomes and
-#'  probabilities, and calculates the joint distributions in ascending order.
+#'  probabilities, and calculates the joint distributions in ascending order. It
+#'  also compares the CDFs to find the dominant prospect by FSD, if exists.
 #'
 #'  @details
 #'  The parameters that end with the same number are corresponding to the same
@@ -20,16 +21,17 @@
 #'
 #'  @param outcome1,outcome2 Numeric vectors, including outcome values.
 #'  @param prob1,prob2 Numeric vectors, including probability values.
-#'  @returns A list of three numeric vectors.
+#'  @returns A list of three numeric vectors corresponding to the joint
+#'  distribution, and an integer value, indicating the dominant prospect.
 #'  @examples
 #'  outcome1 = c(1,4,7)
 #'  outcome2 = c(2,3,5)
 #'  prob1 = c(1/3,1/3,1/3)
 #'  prob2 = c(1/6,1/6,2/3)
-#'  sd_jointdist(outcome1, outcome2, prob1, prob2)
+#'  fsd(outcome1, outcome2, prob1, prob2)
 #'
 #' @export
-sd_jointdist = function(outcome1, outcome2, prob1, prob2){
+fsd = function(outcome1, outcome2, prob1, prob2){
 
   if(!is.numeric(c(outcome1, outcome2, prob1, prob2))){
     stop("Error: all arguments should be numeric.")
@@ -50,11 +52,18 @@ sd_jointdist = function(outcome1, outcome2, prob1, prob2){
   df1 = data.frame(Yield = outcome1, f = prob1)
   df2 = data.frame(Yield = outcome2, g = prob2)
 
+  library(dplyr)
+  library(tidyr)
+
   df = df1 %>%
     full_join(df2, by = 'Yield') %>%
     replace_na(list(f=0,g=0)) %>%
     arrange(Yield) %>%
     mutate('F' = cumsum(f), G = cumsum(g))
 
-  return(list(outcome = df$Yield, cdf1 = df$F, cdf2 = df$G))
+  env = new.env()
+  sys.source('R/Utils.R', envir = env)
+
+  return(list(outcome = df$Yield, cdf1 = df$F, cdf2 = df$G,
+              winner = env$comparison(df$F, df$G)))
 }
