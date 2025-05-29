@@ -5,12 +5,13 @@ calc.exp.val = function(y1,y2,prob1,prob2){
 }
 
 comparison = function(x, y){
-  winner = 0
 
   if(all(x <= y) & any(x < y)){
     winner = 1
   } else if(all(x >= y) & any(x > y)){
     winner = 2
+  } else{
+    winner = 0
   }
 
   return(winner)
