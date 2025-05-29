@@ -10,10 +10,10 @@
 #'  vectors of the first prospect.
 #'
 #'  The length of `outcome1` and `prob1` should be the same. This is true for
-#'  the other two parameters. If not, the function raise an error.
+#'  the other two parameters. If not, an error is raised.
 #'
-#'  The `prob1` and `prob2`, each must adds up to one. If not, the function
-#'  raise an error.
+#'  The `prob1` and `prob2`, each must adds up to one. If not, an error is
+#'  raised.
 #'
 #'  The output includes four elements: outcome: a combined version of
 #'  `outcome1` and `outcome2` in ascending order, cdf1, cdf2: the marginal
