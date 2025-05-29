@@ -15,9 +15,11 @@
 #'  The `prob1` and `prob2`, each must adds up to one. If not, the function
 #'  raise an error.
 #'
-#'  The output includes three elements: outcome: a combined version of
+#'  The output includes four elements: outcome: a combined version of
 #'  `outcome1` and `outcome2` in ascending order, cdf1, cdf2: the marginal
-#'  cumulative distribution function (CDF) of the corresponding prospect.
+#'  cumulative distribution function (CDF) of the corresponding prospect, and
+#'  winner: an integer corresponding to the dominant prospect (1 or 2). If there
+#'  is no domination, it will be 0.
 #'
 #'  @param outcome1,outcome2 Numeric vectors, including outcome values.
 #'  @param prob1,prob2 Numeric vectors, including probability values.
