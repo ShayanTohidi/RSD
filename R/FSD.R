@@ -26,10 +26,10 @@
 #'  outcome2 = c(2,3,5)
 #'  prob1 = c(1/3,1/3,1/3)
 #'  prob2 = c(1/6,1/6,2/3)
-#'  joindist_calc(outcome1, outcome2, prob1, prob2)
+#'  sd_jointdist(outcome1, outcome2, prob1, prob2)
 #'
 #' @export
-jointdist_calc = function(outcome1, outcome2, prob1, prob2){
+sd_jointdist = function(outcome1, outcome2, prob1, prob2){
 
   if(!is.numeric(c(outcome1, outcome2, prob1, prob2))){
     stop("Error: all arguments should be numeric.")
