@@ -161,22 +161,22 @@ calc.intersection = function(x1,x2,y11,y12,y21,y22){
   return(list(x.intersect = xis, y.intersect = yis))
 }
 
-calc.mod.yield.ssd = function(yield, ssd1, ssd2){
-  new.yield = yield
+calc.mod.outcome = function(outcome, ssd1, ssd2){
+  new.outcome = outcome
   new.ssd1 = ssd1
   new.ssd2 = ssd2
-  n = length(yield)
+  n = length(outcome)
   for (i in 1:(n-1)) {
-    if(has.intersect(yield[i], yield[i+1], ssd1[i], ssd1[i+1], ssd2[i],
+    if(has.intersect(outcome[i], outcome[i+1], ssd1[i], ssd1[i+1], ssd2[i],
                      ssd2[i+1])){
-      point = calc.intrsect(yield[i], yield[i+1], ssd1[i], ssd1[i+1], ssd2[i],
+      point = calc.intrsect(outcome[i], outcome[i+1], ssd1[i], ssd1[i+1], ssd2[i],
                             ssd2[i+1])
-      new.yield = append(new.yield, point$x.intersect)
+      new.outcome = append(new.outcome, point$x.intersect)
       new.ssd1 = append(new.ssd1, point$y.intersect)
       new.ssd2 = append(new.ssd2, point$y.intersect)
     }
   }
 
-  return(list(outcome = sort(new.yield), ssd1 = sort(new.ssd1),
+  return(list(outcome = sort(new.outcome), ssd1 = sort(new.ssd1),
               ssd2 = sort(new.ssd2)))
 }
