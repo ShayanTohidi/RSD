@@ -117,16 +117,39 @@ calc.area.below.line = function(x1, x2, y1, y2){
 #' y12 = 6
 #' y21 = 3
 #' y22 = 4
-#' has.intersect(x1, x2, y11, y12, y21, y22)
+#' has.intersection(x1, x2, y11, y12, y21, y22)
 #'
-has.intersect = function(x1, x2, y11, y12, y21, y22){
+has.intersection = function(x1, x2, y11, y12, y21, y22){
   if((y11<y21 & y12>y22) | (y11>y21 & y12<y22)){
     return(TRUE)
   }
   return(FALSE)
 }
 
-calc.intrsect = function(x1,x2,y11,y12,y21,y22){
+#' Calculates the intersection point of two lines.
+#'
+#' Given the start and end coordinates of two straight lines, we calculate the
+#' intersection point of them.
+#'
+#' @details
+#' Having intersection point has been checked before.
+#'
+#' @seealso [has.intersect()]
+#'
+#' @param x1,x2 Float values.
+#' @param y11,y12 Float values, corresponding to the first line.
+#' @param y21,y22 Float values, corresponding to the second line.
+#' @returns A list, including the coordinates of the intersection point.
+#' @examples
+#' x1 = 1
+#' x2 = 5
+#' y11 = 1
+#' y12 = 6
+#' y21 = 3
+#' y22 = 4
+#' calc.intersection(x1, x2, y11, y12, y21, y22)
+#'
+calc.intersection = function(x1,x2,y11,y12,y21,y22){
 
   m1 = (y12-y11)/(x2-x1)
   m2 = (y22-y21)/(x2-x1)
