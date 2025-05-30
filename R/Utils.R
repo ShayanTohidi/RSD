@@ -44,6 +44,23 @@ sd_expected.values = function(outcome1, outcome2, prob1, prob2){
               mean2 = sum(outcome2*prob2)))
 }
 
+#' Comparing two numeric vectors
+#'
+#' This function compares two numeric vectors. The vector whose all elements
+#' smaller or equal to all elements of the other one where at least one element
+#' is smaller, will be the winner.
+#'
+#' @details
+#' The function returns the index of the winner, meaning 1 or 2, corresponding
+#' to parameters `x` and `y`, respectively. If no vector meets the condition, 0
+#' will be returned.
+#'
+#' @param x,y Numeric vectors.
+#' @returns An integer, among 0, 1, 2.
+#' @examples
+#' x = c(1, 2, 3)
+#' y = c(2, 3, 4)
+#'
 comparison = function(x, y){
 
   if(all(x <= y) & any(x < y)){
