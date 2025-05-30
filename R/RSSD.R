@@ -26,6 +26,10 @@
 #' @export
 rssd = function(ssd1, ssd2){
 
+  if(!is.numeric(c(ssd1, ssd2))){
+    stop("Error: all arguments should be numeric.")
+  }
+
   if(length(ssd1) != length(ssd2)){
     stop("Error: The length of 'ssd1' and 'ssd2' must be equal.")
   }
