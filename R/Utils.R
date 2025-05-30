@@ -74,6 +74,24 @@ comparison = function(x, y){
   return(winner)
 }
 
+#' Calculates the area between x-axis and a straight line
+#'
+#' It takes four parameters as the coordinates of two points at the beginning
+#' and end of a straight line, and calculates the area exactly below the line
+#' (between the line and the x-axis).
+#'
+#' @param x1,x2 Float values, indicating the first coordinates of start and end
+#' points, respectively.
+#' @param y1,y2 Float values, indicating the second coordinates of start and end
+#' points, respectively.
+#' @returns A float.
+#' @examples
+#' x1 = 2
+#' y1 = 2
+#' x2 = 4
+#' y2 = 5
+#' calc.area.below.line(x1, x2, y1, y2)
+#'
 calc.area.below.line = function(x1, x2, y1, y2){
 
   area.rect = y1*(x2-x1)
