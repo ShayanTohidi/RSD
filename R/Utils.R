@@ -1,7 +1,47 @@
+#' Calculating Expected value
+#'
+#' It calculates the expected value of both prospects given their
+#' outcomes and probabilities.
+#'
+#' @details
+#' All parameters corresponding to the first prospect must have the same length,
+#' meaning `outcome1` and `prob1`. It has to be true for the second prospect as
+#' well. Otherwise, an error will be raised.
+#'
+#' The summation of each probability vector, e.g., `prob1` and `prob2` must be
+#' one. Otherwise, an error will be raised.
+#'
+#' @param outcome1,outcome2 Numeric vectors, including outcome values.
+#' @param prob1,prob2 Numeric vectors, including probability values.
+#' @returns A list, including two float elements as the expected value of each
+#' prospect.
+#' @examples
+#'  outcome1 = c(1,4,7)
+#'  outcome2 = c(2,3,5)
+#'  prob1 = c(1/3,1/3,1/3)
+#'  prob2 = c(1/6,1/6,2/3)
+#'  sd_expected.values(outcome1, outcome2, prob1, prob2)
+#'
+sd_expected.values = function(outcome1, outcome2, prob1, prob2){
 
-calc.exp.val = function(y1,y2,prob1,prob2){
+  if(!is.numeric(c(outcome1, outcome2, prob1, prob2))){
+    stop("Error: all arguments should be numeric.")
+  }
 
-  return(list(mean1 = sum(y1*prob1), mean2 = sum(y2*prob2)))
+  if(length(outcome1) != length(prob1)){
+    stop("Error: The length of 'outcome1' and 'prob1' must be equal.")
+  }
+
+  if(length(outcome2) != length(prob2)){
+    stop("Error: The length of 'outcome2' and 'prob2' must be equal.")
+  }
+
+  if(sum(prob1) != 1 | sum(prob2) != 1){
+    stop("Error: The summation of each 'prob1' and 'prob2' must be one.")
+  }
+
+  return(list(mean1 = sum(outcome1*prob1),
+              mean2 = sum(outcome2*prob2)))
 }
 
 comparison = function(x, y){
