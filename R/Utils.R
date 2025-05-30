@@ -100,7 +100,26 @@ calc.area.below.line = function(x1, x2, y1, y2){
   return(area.trngl + area.rect)
 }
 
-has.intersect = function(x1,x2,y11,y12,y21,y22){
+#' If two lines have intersection or no.
+#'
+#' It determines if two lines have intersection point or not. The start and
+#' end points of both lines have equal first coordinate value (the one
+#' corresponds to the x-axis).
+#'
+#' @param x1,x2 Float values.
+#' @param y11,y12 Float values, corresponding to the first line.
+#' @param y21,y22 Float values, corresponding to the second line.
+#' @returns A Boolean.
+#' @examples
+#' x1 = 1
+#' x2 = 5
+#' y11 = 1
+#' y12 = 6
+#' y21 = 3
+#' y22 = 4
+#' has.intersect(x1, x2, y11, y12, y21, y22)
+#'
+has.intersect = function(x1, x2, y11, y12, y21, y22){
   if((y11<y21 & y12>y22) | (y11>y21 & y12<y22)){
     return(TRUE)
   }
