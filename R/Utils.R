@@ -161,6 +161,24 @@ calc.intersection = function(x1,x2,y11,y12,y21,y22){
   return(list(x.intersect = xis, y.intersect = yis))
 }
 
+#' Modify outcome vector.
+#'
+#' It modify outcome vector to have all original values plus all intersection
+#' points in ascending order. The corresponding SSD vectors will also be
+#' returned.
+#'
+#' @param outcome A numeric vector.
+#' @param ssd1,ssd2 Numeric vectors.
+#' @returns A list of three elements.
+#' @examples
+#' outcome1 = c(1,4,7)
+#' outcome2 = c(2,3,5)
+#' prob1 = c(1/3,1/3,1/3)
+#' prob2 = c(1/6,1/6,2/3)
+#' obj.fsd = fsd(outcome1, outcome2, prob1, prob2)
+#' obj.ssd = ssd(obj.fsd$outcome, obj.fsd$cdf1, obj.fsd$cdf2)
+#' calc.mod.outcome(obj.fsd$outcome, obj.ssd$ssd1, obj.ssd$ssd2)
+#'
 calc.mod.outcome = function(outcome, ssd1, ssd2){
   new.outcome = outcome
   new.ssd1 = ssd1
