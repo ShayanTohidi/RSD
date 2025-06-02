@@ -1,9 +1,9 @@
 #' Compares prospects based on AFSD
 #'
 #' @export
-afsd = function(yield, cdf1, cdf2){
+afsd = function(outcome, cdf1, cdf2){
 
-  area = calc.betw.cdf.area(yield, cdf1, cdf2)
+  area = calc.betw.cdf.area(outcome, cdf1, cdf2)
   total.area = sum(abs(area))
   neg.area = abs(sum(area[area < 0]))
   pos.area = sum(area[area > 0])
@@ -24,8 +24,8 @@ afsd = function(yield, cdf1, cdf2){
               negative.area = neg.area))
 }
 
-calc.betw.cdf.area = function(yield, cdf1, cdf2){
-  y = (yield - lag(yield))[2:length(yield)]
+calc.betw.cdf.area = function(outcome, cdf1, cdf2){
+  y = (outcome - lag(outcome))[2:length(outcome)]
   cdf1.mod = cdf1[-length(cdf1)]
   cdf2.mod = cdf2[-length(cdf2)]
 
