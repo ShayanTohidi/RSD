@@ -1,5 +1,7 @@
-
-calc.afsd = function(yield, cdf1, cdf2){
+#' Compares prospects based on AFSD
+#'
+#' @export
+afsd = function(yield, cdf1, cdf2){
 
   area = calc.betw.cdf.area(yield, cdf1, cdf2)
   total.area = sum(abs(area))
