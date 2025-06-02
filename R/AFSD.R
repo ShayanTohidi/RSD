@@ -34,6 +34,18 @@
 #' @export
 afsd = function(outcome, cdf1, cdf2){
 
+  if(!is.numeric(c(outcome, cdf1, cdf2))){
+    stop("Error: all arguments should be numeric.")
+  }
+
+  if(length(outcome) != length(cdf1)){
+    stop("Error: The length of 'outcome' and 'cdf1' must be equal.")
+  }
+
+  if(length(outcome) != length(cdf2)){
+    stop("Error: The length of 'outcome' and 'cdf2' must be equal.")
+  }
+
   area = calc.betw.cdf.area(outcome, cdf1, cdf2)
   total.area = sum(abs(area))
   neg.area = abs(sum(area[area < 0]))
