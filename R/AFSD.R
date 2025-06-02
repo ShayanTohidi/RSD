@@ -1,5 +1,36 @@
 #' Compares prospects based on AFSD
 #'
+#' It compares two prospects using AFSD criteria, that is the prospect having
+#' the minimum violation area from a classic FSD.
+#'
+#' @details
+#' The length of `outcome`, `cdf1`, and `cdf2` must be equal. If not, an error
+#' is raised.
+#'
+#' The returned list has six elements: `winner` indicates the dominant prospect
+#' index. It will be zero if neither dominates the other. `epsilon` is the ratio
+#' of violated area to the total area between the CDFs. `area` is a vector, where
+#' the values show the area between the CDFs correspond to each segment.
+#' `total.area` is the total area between the CDFs. `positive.area` is the
+#' amount of area where the `area` vector is positive, meaning the `cdf1` is
+#' larger than `cdf2`. `negative.area` is like `positive.area` for negative
+#' values.
+#'
+#' @seealso [fsd()] for the parameters, [calc.betw.cdf.area()] for area
+#' calculations.
+#'
+#' @param outcome A numeric vector, including all outcomes in ascending order.
+#' @param cdf1,cdf2 Numeric vectors, including marginal CDF corresponding to
+#' each prospect.
+#' @returns A list, including all the calculation details.
+#' @examples
+#' outcome1 = c(1,4,7)
+#' outcome2 = c(2,3,5)
+#' prob1 = c(1/3,1/3,1/3)
+#' prob2 = c(1/6,1/6,2/3)
+#' obj = fsd(outcome1, outcome2, prob1, prob2)
+#' afsd(obj$outcome, obj$cdf1, obj$cdf2)
+#'
 #' @export
 afsd = function(outcome, cdf1, cdf2){
 
