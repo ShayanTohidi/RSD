@@ -1,4 +1,4 @@
-#'  Calculates the joint distribution and checks for the FSD
+#'  Compares random prospects by FSD
 #'
 #'  It compares two random prospects by the first-order stochastic dominance (FSD),
 #'  given the distributions.
@@ -6,7 +6,7 @@
 #'  @details
 #'  If neither prospect dominates the other, it returns 0.
 #'
-#'  @param dists Distributions object.
+#'  @param dists.obj Distributions object.
 #'  @returns An integer, indicating the index of the dominant prospect.
 #'  @examples
 #' dists = createDistributions(outcome1 = c(1,4,7),
