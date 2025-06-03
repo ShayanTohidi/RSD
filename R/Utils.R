@@ -1,26 +1,16 @@
 #' Calculating Expected value
 #'
-#' It calculates the expected value of both prospects given their
-#' outcomes and probabilities.
+#' It calculates the expected value of both prospects given their distributions.
 #'
-#' @details
-#' All parameters corresponding to the first prospect must have the same length,
-#' meaning `outcome1` and `prob1`. It has to be true for the second prospect as
-#' well. Otherwise, an error will be raised.
-#'
-#' The summation of each probability vector, e.g., `prob1` and `prob2` must be
-#' one. Otherwise, an error will be raised.
-#'
-#' @param outcome1,outcome2 Numeric vectors, including outcome values.
-#' @param prob1,prob2 Numeric vectors, including probability values.
-#' @returns A list, including two float elements as the expected value of each
+#' @param dists Distributions object.
+#' @returns A list, including two double elements as the expected value of each
 #' prospect.
 #' @examples
-#'  outcome1 = c(1,4,7)
-#'  outcome2 = c(2,3,5)
-#'  prob1 = c(1/3,1/3,1/3)
-#'  prob2 = c(1/6,1/6,2/3)
-#'  expected.values(outcome1, outcome2, prob1, prob2)
+#' dists = createDistributions(outcome1 = c(1,4,7),
+#'                             outcome2 = c(2,3,5),
+#'                             prob1 = c(1/3,1/3,1/3),
+#'                             prob2 = c(1/6,1/6,2/3))
+#' expected.values(dists)
 #'
 expected.values = function(dists){
 
