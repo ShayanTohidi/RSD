@@ -1,53 +1,58 @@
-#' Calculates the SSD vectors and checks for domination
+#' Compares random prospects by SSD
 #'
-#' This function takes three parameters corresponding to the joint distribution
-#' and returns the SSD vectors for each prospect, with their comparison to find
-#' the dominant one.
+#'  It compares two random prospects by the second-order stochastic dominance (SSD),
+#'  given the distributions.
 #'
 #' @details
-#' The length of `outcome`, `cdf1`, and `cdf2` must be equal. If not, an error
-#' is raised.
+#' If neither prospect dominates the other, it returns 0.
 #'
-#' The output includes three elements: `ssd1`, `ssd2`: two vectors containing
-#' ssd values for the corresponding prospects, and `winner`: an integer that
-#' indicates the dominant prospect (1 or 2), and 0 if the domination fails.
+#' @seealso [ssd.calc()] for the parameters.
 #'
-#' @seealso [fsd()] for the parameters.
-#'
-#' @param outcome A numeric vector, including all outcomes together in ascending
-#' order.
-#' @param cdf1,cdf2 Numeric vectors, including marginal CDF corresponding to
-#' each prospect.
-#' @returns A list of two numeric vectors corresponding to SSD values of each
-#' prospect, and an integer value, indicating the dominant prospect.
+#' @param dists.obj Distributions object.
+#' @returns An integer, indicating the index of the dominant prospect.
 #' @examples
-#' outcome1 = c(1,4,7)
-#' outcome2 = c(2,3,5)
-#' prob1 = c(1/3,1/3,1/3)
-#' prob2 = c(1/6,1/6,2/3)
-#' obj = fsd(outcome1, outcome2, prob1, prob2)
-#' ssd(obj$outcome, obj$cdf1, obj$cdf2)
+#' dists = createDistributions(outcome1 = c(1,4,7),
+#'                             outcome2 = c(2,3,5),
+#'                             prob1 = c(1/3,1/3,1/3),
+#'                             prob2 = c(1/6,1/6,2/3))
+#'  ssd.test(dists)
 #'
 #' @export
-ssd = function(outcome, cdf1, cdf2){
+ssd.test = function(dists.obj){
 
-  if(!is.numeric(c(outcome, cdf1, cdf2))){
-    stop("Error: all arguments should be numeric.")
+  if(!is(dists.obj, 'Distributions')){
+    stop("Input must be of class 'Distributions'.")
   }
 
-  if(length(outcome) != length(cdf1)){
-    stop("Error: The length of 'outcome' and 'cdf1' must be equal.")
-  }
-
-  if(length(outcome) != length(cdf2)){
-    stop("Error: The length of 'outcome' and 'cdf2' must be equal.")
-  }
-
-  ssd1 = cumsum(lag(cdf1, default = 0) * (outcome - lag(outcome, default = 0)))
-  ssd2 = cumsum(lag(cdf2, default = 0) * (outcome - lag(outcome, default = 0)))
+  ssd.result = ssd.calc(dists.obj)
 
   env = new.env()
   sys.source('R/Utils.R', envir = env)
 
-  return(list(ssd1 = ssd1, ssd2 = ssd2, winner = env$comparison(ssd1, ssd2)))
+  winner = env$comparison(ssd.result$ssd1, ssd.result$ssd2)
+
+  return(winner)
+}
+
+#' Calculates the SSD values for a pair of prospects.
+#'
+#' @param dists.obj A Distributions object.
+#' @returns A list, containing two SSD vectors.
+#' @examples
+#' dists = createDistributions(outcome1 = c(1,4,7),
+#'                             outcome2 = c(2,3,5),
+#'                             prob1 = c(1/3,1/3,1/3),
+#'                             prob2 = c(1/6,1/6,2/3))
+#' ssd.calc(dists)
+#'
+ssd.calc = function(dists.obj){
+
+  outcome = dists.obj@outcome
+  cdf1 = dists.obj@cum.prob1
+  cdf2 = dists.obj@cum.prob2
+
+  ssd1 = cumsum(lag(cdf1, default = 0) * (outcome - lag(outcome, default = 0)))
+  ssd2 = cumsum(lag(cdf2, default = 0) * (outcome - lag(outcome, default = 0)))
+
+  return(list(ssd1 = ssd1, ssd2 = ssd2))
 }
