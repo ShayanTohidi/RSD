@@ -14,6 +14,10 @@ It compares two random prospects by the first-order stochastic dominance (FSD),
 @details
  If neither prospect dominates the other, it returns 0.
 
+ A prospect dominates when its CDF is below the other one. It means that all
+ element of the CDF vector must be equal or smaller, and at least one element
+ should be smaller for the dominant prospect.
+
  @param dists.obj Distributions object.
  @returns An integer, indicating the index of the dominant prospect.
  @examples
