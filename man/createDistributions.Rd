@@ -20,3 +20,6 @@ Distributions object.
 It is much easier to use this constructor to create an instance of the
 Distributions class.
 }
+\seealso{
+[Distributions()]
+}
