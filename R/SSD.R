@@ -31,10 +31,7 @@ ssd.test = function(dists.obj){
 
   ssd.result = ssd.calc(dists.obj)
 
-  env = new.env()
-  sys.source('R/Utils.R', envir = env)
-
-  winner = env$comparison(ssd.result$ssd1, ssd.result$ssd2)
+  winner = comparison(ssd.result$ssd1, ssd.result$ssd2)
 
   return(list(ssd1 = ssd.result$ssd1, ssd2 = ssd.result$ssd2, winner = winner))
 }
