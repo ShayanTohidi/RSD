@@ -1,3 +1,21 @@
+#' Distributions Class
+#'
+#' Represents two distributions (prospects) that are going to be compared using
+#' Stochastic Dominance (SD).
+#'
+#' @details
+#' It contains the input validation needed for comparing two prospects. For example,
+#' having sorted `outcome`, each of `prob1` and `prob2` adds up to one, arguments
+#' having the same lengths, and having corresponding probability and cumulative
+#' arguments.
+#'
+#' @slot outcome Numeric vector. The combined outcome values in ascending order.
+#' @slot prob1 Numeric vector. Corresponding probability vector for prospect one.
+#' @slot prob2 Numeric vector. Corresponding probability vector for prospect two.
+#' @slot cum.prob1 Numeric vector. Corresponding cumulative probability vector for prospect one.
+#' @slot cum.prob2 Numeric vector. Corresponding cumulative probability vector for prospect two.
+#'
+#' @export
 setClass(
   'Distributions',
   slots = list(outcome = 'numeric', prob1 = 'numeric', prob2 = 'numeric',
