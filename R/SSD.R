@@ -31,7 +31,7 @@ ssd.test = function(dists.obj){
 
   winner = env$comparison(ssd.result$ssd1, ssd.result$ssd2)
 
-  return(winner)
+  return(list(ssd1 = ssd.result$ssd1, ssd2 = ssd.result$ssd2, winner = winner))
 }
 
 #' Calculates the SSD values for a pair of prospects.
