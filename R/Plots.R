@@ -9,21 +9,15 @@
 #' The function shows a step plot that includes both CDFs, and return the plot
 #' object for further modifications.
 #'
-#' @seealso [fsd()] for the parameters.
-#'
-#' @param outcome A numeric vector, including all outcome values in ascending
-#' order.
-#' @param cdf1,cdf2 Numeric vectors, including the CDF values for corresponding
-#' prospects.
+#' @param dists.obj Distributions object.
 #' @param names A character vector, including the names of prospects in order.
 #' @returns A list, including plot elements.
 #' @examples
-#' outcome1 = c(1,4,7)
-#' outcome2 = c(2,3,5)
-#' prob1 = c(1/3,1/3,1/3)
-#' prob2 = c(1/6,1/6,2/3)
-#' obj = fsd(outcome1, outcome2, prob1, prob2)
-#' plot_fsd(obj$outcome, obj$cdf1, obj$cdf2)
+#' dists = createDistributions(outcome1 = c(1,4,7),
+#'                             outcome2 = c(2,3,5),
+#'                             prob1 = c(1/3,1/3,1/3),
+#'                             prob2 = c(1/6,1/6,2/3))
+#'  fsd.plot(dists, names = c('First', 'Second'))
 #'
 #' @export
 fsd.plot = function(dists.obj, names = c('1', '2')){
