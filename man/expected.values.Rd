@@ -4,7 +4,7 @@
 \alias{expected.values}
 \title{Calculating Expected value}
 \usage{
-expected.values(dists)
+expected.values(dists.obj)
 }
 \arguments{
 \item{dists}{Distributions object.}
