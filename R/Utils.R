@@ -2,7 +2,7 @@
 #'
 #' It calculates the expected value of both prospects given their distributions.
 #'
-#' @param dists Distributions object.
+#' @param dists.obj Distributions object.
 #' @returns A list, including two double elements as the expected value of each
 #' prospect.
 #' @examples
