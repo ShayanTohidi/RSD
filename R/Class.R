@@ -33,6 +33,20 @@ setClass(
   }
 )
 
+#' Constructor of Distributions Class
+#'
+#' It is much easier to use this constructor to create an instance of the
+#' Distributions class.
+#'
+#' @seealso [Distributions()]
+#'
+#' @param outcome1,outcome2 Numeric vectors. The outcomes corresponding to each
+#' prospect.
+#' @param prob1,prob2 Numeric vectors. The probabilities corresponding to each
+#' prospect.
+#' @returns Distributions object.
+#'
+#' @export
 createDistributions = function(outcome1, outcome2, prob1, prob2){
 
   if(length(outcome1) != length(prob1)){
