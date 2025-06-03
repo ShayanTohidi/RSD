@@ -25,5 +25,7 @@ fsd.test = function(dists.obj){
   env = new.env()
   sys.source('R/Utils.R', envir = env)
 
-  return(winner = env$comparison(dists.obj@cum.prob1, dists.obj@cum.prob2))
+  winner = env$comparison(dists.obj@cum.prob1, dists.obj@cum.prob2)
+
+  return(winner)
 }
