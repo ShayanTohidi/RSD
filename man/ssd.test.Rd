@@ -10,7 +10,8 @@ ssd.test(dists.obj)
 \item{dists.obj}{Distributions object.}
 }
 \value{
-An integer, indicating the index of the dominant prospect.
+A list. Two numeric vectors of corresponding SSD values, and an
+integer, indicating of the dominant prospect index.
 }
 \description{
 It compares two random prospects by the second-order stochastic dominance (SSD),
@@ -18,6 +19,10 @@ It compares two random prospects by the second-order stochastic dominance (SSD),
 }
 \details{
 If neither prospect dominates the other, it returns 0.
+
+ A prospect dominates when its SSD is below the other one. It means that all
+ element of the SSD vector must be equal or smaller, and at least one element
+ should be smaller for the dominant prospect.
 }
 \examples{
 dists = createDistributions(outcome1 = c(1,4,7),
