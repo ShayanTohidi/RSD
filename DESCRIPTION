@@ -12,3 +12,4 @@ LazyData: true
 URL: https://github.com/ShayanTohidi/RSD
 BugReports: https://github.com/ShayanTohidi/RSD/issues
 RoxygenNote: 7.3.2
+Imports: methods
