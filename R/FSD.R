@@ -33,39 +33,14 @@
 #'  fsd(outcome1, outcome2, prob1, prob2)
 #'
 #' @export
-fsd = function(outcome1, outcome2, prob1, prob2){
+fsd.test = function(dists){
 
-  if(!is.numeric(c(outcome1, outcome2, prob1, prob2))){
-    stop("Error: all arguments should be numeric.")
+  if(!is(dists, 'Distributions')){
+    stop("Input must be of class 'Distributions'.")
   }
-
-  if(length(outcome1) != length(prob1)){
-    stop("Error: The length of 'outcome1' and 'prob1' must be equal.")
-  }
-
-  if(length(outcome2) != length(prob2)){
-    stop("Error: The length of 'outcome2' and 'prob2' must be equal.")
-  }
-
-  if(sum(prob1) != 1 | sum(prob2) != 1){
-    stop("Error: The summation of each 'prob1' and 'prob2' must be one.")
-  }
-
-  df1 = data.frame(Yield = outcome1, f = prob1)
-  df2 = data.frame(Yield = outcome2, g = prob2)
-
-  library(dplyr)
-  library(tidyr)
-
-  df = df1 %>%
-    full_join(df2, by = 'Yield') %>%
-    replace_na(list(f=0,g=0)) %>%
-    arrange(Yield) %>%
-    mutate('F' = cumsum(f), G = cumsum(g))
 
   env = new.env()
   sys.source('R/Utils.R', envir = env)
 
-  return(list(outcome = df$Yield, cdf1 = df$F, cdf2 = df$G,
-              winner = env$comparison(df$F, df$G)))
+  return(winner = env$comparison(dists@cum.prob1, dists@cum.prob2))
 }
