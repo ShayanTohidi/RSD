@@ -2,7 +2,7 @@
 % Please edit documentation in R/FSD.R
 \name{fsd.test}
 \alias{fsd.test}
-\title{Calculates the joint distribution and checks for the FSD}
+\title{Compares random prospects by FSD}
 \usage{
 fsd.test(dists.obj)
 }
@@ -14,7 +14,7 @@ It compares two random prospects by the first-order stochastic dominance (FSD),
 @details
  If neither prospect dominates the other, it returns 0.
 
- @param dists Distributions object.
+ @param dists.obj Distributions object.
  @returns An integer, indicating the index of the dominant prospect.
  @examples
 dists = createDistributions(outcome1 = c(1,4,7),
