@@ -6,6 +6,10 @@
 #' @details
 #' If neither prospect dominates the other, it returns 0.
 #'
+#'  A prospect dominates when its SSD is below the other one. It means that all
+#'  element of the SSD vector must be equal or smaller, and at least one element
+#'  should be smaller for the dominant prospect.
+#'
 #' @seealso [ssd.calc()] for the parameters.
 #'
 #' @param dists.obj Distributions object.
