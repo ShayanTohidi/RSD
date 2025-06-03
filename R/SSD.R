@@ -9,7 +9,8 @@
 #' @seealso [ssd.calc()] for the parameters.
 #'
 #' @param dists.obj Distributions object.
-#' @returns An integer, indicating the index of the dominant prospect.
+#' @returns A list. Two numeric vectors of corresponding SSD values, and an
+#' integer, indicating of the dominant prospect index.
 #' @examples
 #' dists = createDistributions(outcome1 = c(1,4,7),
 #'                             outcome2 = c(2,3,5),
