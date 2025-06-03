@@ -91,7 +91,7 @@ fsd.plot = function(dists.obj, names = c('1', '2')){
 #' plot_ssd(obj.fsd$outcome, obj.ssd$ssd1, obj.ssd$ssd2)
 #'
 #' @export
-plot_ssd = function(outcome, ssd1, ssd2, names){
+ssd.plot = function(outcome, ssd1, ssd2, names = c('1', '2')){
 
   if(!is.numeric(c(outcome, ssd1, ssd2))){
     stop("Error: all arguments should be numeric.")
