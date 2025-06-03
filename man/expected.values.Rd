@@ -7,7 +7,7 @@
 expected.values(dists.obj)
 }
 \arguments{
-\item{dists}{Distributions object.}
+\item{dists.obj}{Distributions object.}
 }
 \value{
 A list, including two double elements as the expected value of each
