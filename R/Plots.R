@@ -3,9 +3,6 @@
 #' It visualizes the CDFs of both prospects.
 #'
 #' @details
-#' The length of all three parameters, `outcome`, `cdf1`, and `cdf2` must be
-#' equal. Otherwise, an error will be raised.
-#'
 #' The parameter `names` only accepts character vector, otherwise an error will
 #' be raised.
 #'
@@ -29,27 +26,23 @@
 #' plot_fsd(obj$outcome, obj$cdf1, obj$cdf2)
 #'
 #' @export
-plot_fsd = function(outcome, cdf1, cdf2, names = c('1', '2')){
+fsd.plot = function(dists.obj, names = c('1', '2')){
 
-  if(!is.numeric(c(outcome, cdf1, cdf2))){
-    stop("Error: all arguments should be numeric.")
-  }
-
-  if(length(outcome) != length(cdf1)){
-    stop("Error: The length of 'outcome' and 'cdf1' must be equal.")
-  }
-
-  if(length(outcome) != length(cdf2)){
-    stop("Error: The length of 'outcome' and 'cdf2' must be equal.")
+  if(!is(dists.obj, 'Distributions')){
+    stop("Input must be of class 'Distributions'.")
   }
 
   if(!is.character(names)){
     stop("Error: argument 'names' must be character.")
   }
 
-  data = data.frame('Outcomes' = outcome, 'cdf_1' = cdf1, 'cdf_2' = cdf2)
+  outcome = dists.obj@outcome
+  cdf1 = dists.obj@cum.prob1
+  cdf2 = dists.obj@cum.prob2
   name1 = names[1]
   name2 = names[2]
+
+  data = data.frame('Outcomes' = outcome, 'cdf_1' = cdf1, 'cdf_2' = cdf2)
 
   library(dplyr)
   library(tidyr)
