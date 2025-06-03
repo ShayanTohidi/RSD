@@ -22,26 +22,14 @@
 #'  prob2 = c(1/6,1/6,2/3)
 #'  expected.values(outcome1, outcome2, prob1, prob2)
 #'
-expected.values = function(outcome1, outcome2, prob1, prob2){
+expected.values = function(dists){
 
-  if(!is.numeric(c(outcome1, outcome2, prob1, prob2))){
-    stop("Error: all arguments should be numeric.")
+  if(!is(x, Distributions)){
+    stop("Input must be of class 'Distributions'.")
   }
 
-  if(length(outcome1) != length(prob1)){
-    stop("Error: The length of 'outcome1' and 'prob1' must be equal.")
-  }
-
-  if(length(outcome2) != length(prob2)){
-    stop("Error: The length of 'outcome2' and 'prob2' must be equal.")
-  }
-
-  if(sum(prob1) != 1 | sum(prob2) != 1){
-    stop("Error: The summation of each 'prob1' and 'prob2' must be one.")
-  }
-
-  return(list(mean1 = sum(outcome1*prob1),
-              mean2 = sum(outcome2*prob2)))
+  return(list(mean1 = sum(dists@outcome * dists@prob1),
+              mean2 = sum(dists@outcome * dists@prob2)))
 }
 
 #' Comparing two numeric vectors
