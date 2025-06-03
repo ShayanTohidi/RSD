@@ -14,7 +14,7 @@
 #'
 expected.values = function(dists){
 
-  if(!is(x, Distributions)){
+  if(!is(dists, 'Distributions')){
     stop("Input must be of class 'Distributions'.")
   }
 
