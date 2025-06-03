@@ -4,7 +4,7 @@
 \alias{expected.values}
 \title{Calculating Expected value}
 \usage{
-expected.values(outcome1, outcome2, prob1, prob2)
+expected.values(dists)
 }
 \arguments{
 \item{outcome1, outcome2}{Numeric vectors, including outcome values.}
