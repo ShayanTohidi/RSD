@@ -26,10 +26,7 @@ fsd.test = function(dists.obj){
     stop("Input must be of class 'Distributions'.")
   }
 
-  env = new.env()
-  sys.source('R/Utils.R', envir = env)
-
-  winner = env$comparison(dists.obj@cum.prob1, dists.obj@cum.prob2)
+  winner = comparison(dists.obj@cum.prob1, dists.obj@cum.prob2)
 
   return(winner)
 }
