@@ -20,19 +20,19 @@
 #'  fsd.plot(dists, names = c('First', 'Second'))
 #'
 #' @export
-fsd.plot = function(dists.obj, names = c('1', '2')){
+fsd.plot = function(sd.obj, names = c('1', '2')){
 
-  if(!is(dists.obj, 'Distributions')){
-    stop("Input must be of class 'Distributions'.")
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
   }
 
   if(!is.character(names)){
     stop("Error: argument 'names' must be character.")
   }
 
-  outcome = dists.obj@outcome
-  cdf1 = dists.obj@cum.prob1
-  cdf2 = dists.obj@cum.prob2
+  outcome = sd.obj@outcome
+  cdf1 = sd.obj@cdf1
+  cdf2 = sd.obj@cdf2
   name1 = names[1]
   name2 = names[2]
 
