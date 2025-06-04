@@ -86,7 +86,12 @@ afsd = function(outcome, cdf1, cdf2){
 #' obj = fsd(outcome1, outcome2, prob1, prob2)
 #' calc.betw.cdf.area(obj$outcome, obj$cdf1, obj$cdf2)
 #'
-calc.betw.cdf.area = function(outcome, cdf1, cdf2){
+area.btwn.cdfs.calc = function(sd.obj){
+
+  outcome = sd.obj@outcome
+  cdf1 = sd.obj@cdf1
+  cdf2 = sd.obj@cdf2
+
   y = (outcome - lag(outcome))[2:length(outcome)]
   cdf1.mod = cdf1[-length(cdf1)]
   cdf2.mod = cdf2[-length(cdf2)]
