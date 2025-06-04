@@ -35,5 +35,5 @@ afsd.test(sd)
 
 }
 \seealso{
-[calc.betw.cdf.area()] for area calculations.
+[area.btwn.cdfs.calc()] for area calculations.
 }
