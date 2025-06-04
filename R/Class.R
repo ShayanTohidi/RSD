@@ -29,7 +29,9 @@ setClass(
     if(length(object@outcome) != length(object@prob1) |
        length(object@outcome) != length(object@prob2) |
        length(object@outcome) != length(object@cdf1) |
-       length(object@outcome) != length(object@cdf2)) {
+       length(object@outcome) != length(object@cdf2) |
+       length(object@outcome) != length(object@ssd1) |
+       length(object@outcome) != length(object@ssd2)) {
       return('Length of the input arguments must be equal.')
     }
     if(any(cumsum(object@prob1) != object@cdf1) |
