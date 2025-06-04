@@ -4,10 +4,10 @@
 \alias{fsd.plot}
 \title{Drawing the CDFs}
 \usage{
-fsd.plot(dists.obj, names = c("1", "2"))
+fsd.plot(sd.obj, names = c("1", "2"))
 }
 \arguments{
-\item{dists.obj}{Distributions object.}
+\item{sd.obj}{StochasticDominance object.}
 
 \item{names}{A character vector, including the names of prospects in order.}
 }
@@ -21,14 +21,13 @@ It visualizes the CDFs of both prospects.
 The parameter `names` only accepts character vector, otherwise an error will
 be raised.
 
-The function shows a step plot that includes both CDFs, and return the plot
-object for further modifications.
+The function shows the step plot, and returns its object for further modifications.
 }
 \examples{
-dists = createDistributions(outcome1 = c(1,4,7),
-                            outcome2 = c(2,3,5),
-                            prob1 = c(1/3,1/3,1/3),
-                            prob2 = c(1/6,1/6,2/3))
- fsd.plot(dists, names = c('First', 'Second'))
+sd = createStochasticDominance(outcome1 = c(1,4,7),
+                               outcome2 = c(2,3,5),
+                               prob1 = c(1/3,1/3,1/3),
+                               prob2 = c(1/6,1/6,2/3))
+ fsd.plot(sd, names = c('First', 'Second'))
 
 }
