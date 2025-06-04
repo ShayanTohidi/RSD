@@ -20,13 +20,13 @@
 #'  fsd.test(dists)
 #'
 #' @export
-fsd.test = function(dists.obj){
+fsd.test = function(sd.obj){
 
-  if(!is(dists.obj, 'Distributions')){
-    stop("Input must be of class 'Distributions'.")
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
   }
 
-  winner = comparison(dists.obj@cum.prob1, dists.obj@cum.prob2)
+  winner = comparison(sd.obj@cdf1, sd.obj@cdf1)
 
   return(winner)
 }
