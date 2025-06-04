@@ -23,10 +23,6 @@
 #'
 assd.ll.test = function(sd.obj){
 
-  if(!is(sd.obj, 'StochasticDominance')){
-    stop("Input must be of class 'StochasticDominance'.")
-  }
-
   exp.val = expected.values(sd.obj)
   mean1 = exp.val$mean1
   mean2 = exp.val$mean2
@@ -56,6 +52,8 @@ assd.ll.test = function(sd.obj){
 #' It calculates the positive and negative areas between CDFs. The positive is
 #' where both CDF and SSD of the first prospect is larger, and vice versa for
 #' the negative case.
+#'
+#' @seealso [modif.outcome.ssd.calc()] for more details.
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including two numbers corresponding to the positive and
