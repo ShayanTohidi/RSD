@@ -157,22 +157,26 @@ calc.intersection = function(x1,x2,y11,y12,y21,y22){
 #' obj.ssd = ssd(obj.fsd$outcome, obj.fsd$cdf1, obj.fsd$cdf2)
 #' calc.mod.outcome(obj.fsd$outcome, obj.ssd$ssd1, obj.ssd$ssd2)
 #'
-calc.mod.outcome = function(outcome, ssd1, ssd2){
-  new.outcome = outcome
-  new.ssd1 = ssd1
-  new.ssd2 = ssd2
+modif.outcome.ssd.calc = function(sd.obj){
+
+  new.outcome = sd.obj@outcome
+  new.ssd1 = sd.obj@ssd1
+  new.ssd2 = sd.obj@ssd2
+
   n = length(outcome)
   for (i in 1:(n-1)) {
-    if(has.intersect(outcome[i], outcome[i+1], ssd1[i], ssd1[i+1], ssd2[i],
-                     ssd2[i+1])){
-      point = calc.intrsect(outcome[i], outcome[i+1], ssd1[i], ssd1[i+1], ssd2[i],
-                            ssd2[i+1])
+    if(has.intersect(sd.obj@outcome[i], sd.obj@outcome[i+1],
+                     sd.obj@ssd1[i], sd.obj@ssd1[i+1],
+                     sd.obj@ssd2[i], sd.obj@ssd2[i+1])){
+      point = calc.intrsect(sd.obj@outcome[i], sd.obj@outcome[i+1],
+                            sd.obj@ssd1[i], sd.obj@ssd1[i+1],
+                            sd.obj@ssd2[i], sd.obj@ssd2[i+1])
       new.outcome = append(new.outcome, point$x.intersect)
       new.ssd1 = append(new.ssd1, point$y.intersect)
       new.ssd2 = append(new.ssd2, point$y.intersect)
     }
   }
 
-  return(list(outcome = sort(new.outcome), ssd1 = sort(new.ssd1),
-              ssd2 = sort(new.ssd2)))
+  return(list(outcome.new = sort(new.outcome), ssd1.new = sort(new.ssd1),
+              ssd2.new = sort(new.ssd2)))
 }
