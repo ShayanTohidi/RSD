@@ -16,7 +16,7 @@
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#'  fsd.test(sd)
+#' fsd.test(sd)
 #'
 #' @export
 fsd.test = function(sd.obj){
