@@ -12,14 +12,14 @@
 #'                             prob2 = c(1/6,1/6,2/3))
 #' expected.values(dists)
 #'
-expected.values = function(dists.obj){
+expected.values = function(sd.obj){
 
-  if(!is(dists.obj, 'Distributions')){
-    stop("Input must be of class 'Distributions'.")
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
   }
 
-  return(list(mean1 = sum(dists.obj@outcome * dists.obj@prob1),
-              mean2 = sum(dists.obj@outcome * dists.obj@prob2)))
+  return(list(mean1 = sum(sd.obj@outcome * sd.obj@prob1),
+              mean2 = sum(sd.obj@outcome * sd.obj@prob2)))
 }
 
 #' Comparing two numeric vectors
