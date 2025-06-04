@@ -20,6 +20,22 @@ calc.assd.ll = function(area, pos.neg.area.assd.ll, exp.val){
   return(list(winner = winner, epsilon = epsilon))
 }
 
+#' Calculates positive and negative area between CDFs for ASSD-LL
+#'
+#' It calculates the positive and negative areas between CDFs. The positive is
+#' where both CDF and SSD of the first prospect is larger, and vice versa for
+#' the negative case.
+#'
+#' @param sd.obj StochasticDominance object.
+#' @returns A list, including two numbers corresponding to the positive and
+#' negative areas, respectively.
+#' @examples
+#' sd = createStochasticDominance(outcome1 = c(1,4,7),
+#'                                outcome2 = c(2,3,5),
+#'                                prob1 = c(1/3,1/3,1/3),
+#'                                prob2 = c(1/6,1/6,2/3))
+#' pos.neg.area.assd.ll(sd)
+#'
 pos.neg.area.assd.ll = function(sd.obj){
 
   new.outcome.ssd = modif.outcome.ssd.calc(sd.obj)
