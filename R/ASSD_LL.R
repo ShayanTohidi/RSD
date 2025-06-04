@@ -1,4 +1,26 @@
-
+#' Compares random prospects by ASSD-LL
+#'
+#' It uses the positive and negative areas that are computed by ASSD-LL and the
+#' expected values of the prospects to compare them based on the ASSD-LL rule.
+#' If the violation area ratio is less than 0.5 for a prospect, and its expected
+#' value is larger, it dominates the other by ASSD-LL.
+#'
+#' @details
+#' epsilon shows the ratio of the violation. Smaller epsilon means more
+#' decision-makers agree with the result.
+#'
+#' @seealso [expected.values(), pos.neg.area.assd.ll(), afsd.test()] for more
+#' details.
+#'
+#' @param sd.obj StochasticDominance object.
+#' @returns A list, including the index of the dominant prospect and the epsilon.
+#' @examples
+#' sd = createStochasticDominance(outcome1 = c(1,4,7),
+#'                                outcome2 = c(2,3,5),
+#'                                prob1 = c(1/3,1/3,1/3),
+#'                                prob2 = c(1/6,1/6,2/3))
+#' assd.ll.test(sd)
+#'
 assd.ll.test = function(sd.obj){
 
   if(!is(sd.obj, 'StochasticDominance')){
