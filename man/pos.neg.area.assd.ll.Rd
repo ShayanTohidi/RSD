@@ -26,3 +26,6 @@ sd = createStochasticDominance(outcome1 = c(1,4,7),
 pos.neg.area.assd.ll(sd)
 
 }
+\seealso{
+[modif.outcome.ssd.calc()] for more details.
+}
