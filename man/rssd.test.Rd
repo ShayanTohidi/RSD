@@ -4,34 +4,30 @@
 \alias{rssd.test}
 \title{Compares two random prospects by RSSD}
 \usage{
-rssd.test(ssd1, ssd2)
+rssd.test(sd.obj)
 }
 \arguments{
-\item{ssd1, ssd2}{Numeric vectors, including SSD values.}
+\item{sd.obj}{StochasticDominance object.}
 }
 \value{
 A list of three elements, the first two are float, indicating the
-RSSD values, and the last one is integer, representing the index of the
+RSSD values, and the last one is an integer, representing the index of the
 dominant prospect.
 }
 \description{
-This function takes two numeric vectors, representing SSD values for the two
-prospects, and computes the RSSD values with a comparison showing which one
-dominates the other.
+It compares two random prospects by RSSD, which is a relaxed version of the
+classical SSD. In this method, instead of comparing all SSD values, the
+summation of them will be checked, and the prospect having the smaller value
+dominates by RSSD.
 }
 \details{
-The length of `ssd1` and `ssd2` must be equal. Otherwise, an error will be
-raised.
+If no prospect dominates, the returned index for the winner will be 0.
 }
 \examples{
-dists = createDistributions(outcome1 = c(1,4,7),
-                            outcome2 = c(2,3,5),
-                            prob1 = c(1/3,1/3,1/3),
-                            prob2 = c(1/6,1/6,2/3))
-ssd.obj = ssd.calc(dists)
-rssd.test(ssd.obj$ssd1, ssd.obj$ssd2)
+sd = createStochasticDominance(outcome1 = c(1,4,7),
+                               outcome2 = c(2,3,5),
+                               prob1 = c(1/3,1/3,1/3),
+                               prob2 = c(1/6,1/6,2/3))
+rssd.test(sd)
 
-}
-\seealso{
-[ssd(), rssd.calc()] for the parameters.
 }
