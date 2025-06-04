@@ -91,7 +91,7 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
     mutate(ssd1 = ssd.calc(Yield, cdf1), ssd2 = ssd.calc(Yield, cdf2))
 
   new('StochasticDominance', outcome = df$Yield, prob1 = df$prob1, prob2 = df$prob2,
-      cum.prob1 = df$cdf1, cum.prob2 = df$cdf2)
+      cdf1 = df$cdf1, cdf2 = df$cdf2, ssd1 = df$ssd1, ssd2 = df$ssd2)
 }
 
 #' Calculates the SSD values for a prospect.
