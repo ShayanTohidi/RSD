@@ -4,18 +4,16 @@
 \alias{ssd.test}
 \title{Compares random prospects by SSD}
 \usage{
-ssd.test(dists.obj)
+ssd.test(sd.obj)
 }
 \arguments{
-\item{dists.obj}{Distributions object.}
+\item{sd.obj}{StochasticDominance object.}
 }
 \value{
-A list. Two numeric vectors of corresponding SSD values, and an
-integer, indicating of the dominant prospect index.
+A number. Indicating dominant prospect index.
 }
 \description{
-It compares two random prospects by the second-order stochastic dominance (SSD),
- given the distributions.
+It compares two random prospects by the second-order stochastic dominance (SSD).
 }
 \details{
 If neither prospect dominates the other, it returns 0.
@@ -25,13 +23,13 @@ If neither prospect dominates the other, it returns 0.
  should be smaller for the dominant prospect.
 }
 \examples{
-dists = createDistributions(outcome1 = c(1,4,7),
-                            outcome2 = c(2,3,5),
-                            prob1 = c(1/3,1/3,1/3),
-                            prob2 = c(1/6,1/6,2/3))
- ssd.test(dists)
+sd = createStochasticDominance(outcome1 = c(1,4,7),
+                               outcome2 = c(2,3,5),
+                               prob1 = c(1/3,1/3,1/3),
+                               prob2 = c(1/6,1/6,2/3))
+ssd.test(sd)
 
 }
 \seealso{
-[ssd.calc()] for the parameters.
+[ssd.calc()] for the calculation.
 }
