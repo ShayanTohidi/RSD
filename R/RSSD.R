@@ -23,48 +23,18 @@
 #' rssd.test(ssd.obj$ssd1, ssd.obj$ssd2)
 #'
 #' @export
-rssd.test = function(ssd1, ssd2){
+rssd.test = function(sd.obj){
 
-  if(!is.numeric(c(ssd1, ssd2))){
-    stop("Error: all arguments should be numeric.")
-  }
+  rssd1 = sum(sd.obj@ssd1)
+  rssd2 = sum(sd.obj@ssd2)
 
-  if(length(ssd1) != length(ssd2)){
-    stop("Error: The length of 'ssd1' and 'ssd2' must be equal.")
-  }
-
-  rssd.result = rssd.calc(ssd1, ssd2)
-
-  if(rssd.result$rssd1 < rssd.result$rssd2){
+  if(rssd1 < rssd2){
     winner = 1
-  } else if(rssd.result$rssd1 > rssd.result$rssd2){
+  } else if(rssd1 > rssd2){
     winner = 2
   } else {
     winner = 0
   }
 
-  return(list(rssd1 = rssd.result$rssd1, rssd2 = rssd.result$rssd2,
-              winner = winner))
-}
-
-#' Calculates RSSD values
-#'
-#' It takes SSD vectors and add them up separately to calculate the RSSD values.
-#'
-#' @param ssd1,ssd2 Numeric vectors, including the SSD values.
-#' @returns A list of two numbers, indicating the RSSD values.
-#' @examples
-#' dists = createDistributions(outcome1 = c(1,4,7),
-#'                             outcome2 = c(2,3,5),
-#'                             prob1 = c(1/3,1/3,1/3),
-#'                             prob2 = c(1/6,1/6,2/3))
-#' ssd.obj = ssd.calc(dists)
-#' rssd.calc(ssd.obj$ssd1, ssd.obj$ssd2)
-#'
-rssd.calc = function(ssd1, ssd2){
-
-  rssd1 = sum(ssd1)
-  rssd2 = sum(ssd2)
-
-  return(list(rssd1 = rssd1, rssd2 = rssd2))
+  return(list(rssd1 = rssd1, rssd2 = rssd2, winner = winner))
 }
