@@ -1,4 +1,4 @@
-#' Distributions Class
+#' StochasticDominance Class
 #'
 #' Represents two distributions (prospects) that are going to be compared using
 #' Stochastic Dominance (SD).
@@ -6,7 +6,7 @@
 #' @details
 #' It contains the input validation needed for comparing two prospects. For example,
 #' having sorted `outcome`, each of `prob1` and `prob2` adds up to one, arguments
-#' having the same lengths, and having corresponding probability and cumulative
+#' having the same lengths, and having matched probability, cumulative, and ssd
 #' arguments.
 #'
 #' @slot outcome Numeric vector. The combined outcome values in ascending order.
