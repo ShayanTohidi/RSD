@@ -4,10 +4,10 @@
 \alias{expected.values}
 \title{Calculating Expected value}
 \usage{
-expected.values(dists.obj)
+expected.values(sd.obj)
 }
 \arguments{
-\item{dists.obj}{Distributions object.}
+\item{sd.obj}{StochasticDominance object.}
 }
 \value{
 A list, including two double elements as the expected value of each
@@ -17,10 +17,10 @@ prospect.
 It calculates the expected value of both prospects given their distributions.
 }
 \examples{
-dists = createDistributions(outcome1 = c(1,4,7),
-                            outcome2 = c(2,3,5),
-                            prob1 = c(1/3,1/3,1/3),
-                            prob2 = c(1/6,1/6,2/3))
-expected.values(dists)
+sd = createStochasticDominance(outcome1 = c(1,4,7),
+                               outcome2 = c(2,3,5),
+                               prob1 = c(1/3,1/3,1/3),
+                               prob2 = c(1/6,1/6,2/3))
+expected.values(sd)
 
 }
