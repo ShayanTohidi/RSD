@@ -14,10 +14,6 @@
 #'
 expected.values = function(sd.obj){
 
-  if(!is(sd.obj, 'StochasticDominance')){
-    stop("Input must be of class 'StochasticDominance'.")
-  }
-
   return(list(mean1 = sum(sd.obj@outcome * sd.obj@prob1),
               mean2 = sum(sd.obj@outcome * sd.obj@prob2)))
 }
