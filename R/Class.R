@@ -10,26 +10,28 @@
 #' arguments.
 #'
 #' @slot outcome Numeric vector. The combined outcome values in ascending order.
-#' @slot prob1 Numeric vector. Corresponding probability vector for prospect one.
-#' @slot prob2 Numeric vector. Corresponding probability vector for prospect two.
-#' @slot cum.prob1 Numeric vector. Corresponding cumulative probability vector for prospect one.
-#' @slot cum.prob2 Numeric vector. Corresponding cumulative probability vector for prospect two.
+#' @slot prob1,prob2 Numeric vectors. Probabilities corresponding to the prospects.
+#' @slot cdf1,cdf2 Numeric vectors. Cumulative values corresponding to the
+#' prospects.
+#' @slot ssd1,ssd2 Numeric vectors. SSD values corresponding to the prospects.
 #'
 #' @export
 setClass(
-  'Distributions',
-  slots = list(outcome = 'numeric', prob1 = 'numeric', prob2 = 'numeric',
-               cum.prob1 = 'numeric', cum.prob2 = 'numeric'),
+  'StochasticDominance',
+  slots = list(outcome = 'numeric',
+               prob1 = 'numeric', prob2 = 'numeric',
+               cdf1 = 'numeric', cdf2 = 'numeric',
+               ssd1 = 'numeric', ssd2 = 'numeric'),
   validity = function(object){
     if(is.unsorted(object@outcome)) return('Outcome must be sorted in ascending order.')
     if(sum(object@prob1) != 1) return('Prob1 must add up to one.')
     if(sum(object@prob2) != 1) return('Prob2 must add up to one.')
     if(length(object@outcome) != length(object@prob1) |
        length(object@outcome) != length(object@prob2) |
-       length(object@outcome) != length(object@cum.prob1) |
-       length(object@outcome) != length(object@cum.prob2)) return('Length of the input arguments must be equal.')
-    if(any(cumsum(object@prob1) != object@cum.prob1) |
-       any(cumsum(object@prob2) != object@cum.prob2)) return('Probability and cumulative arguments do not match.')
+       length(object@outcome) != length(object@cdf1) |
+       length(object@outcome) != length(object@cdf2)) return('Length of the input arguments must be equal.')
+    if(any(cumsum(object@prob1) != object@cdf1) |
+       any(cumsum(object@prob2) != object@cdf2)) return('Probability and cumulative arguments do not match.')
   }
 )
 
@@ -61,18 +63,36 @@ createDistributions = function(outcome1, outcome2, prob1, prob2){
     stop("Error: The summation of each 'prob1' and 'prob2' must be one.")
   }
 
-  df1 = data.frame(Yield = outcome1, f = prob1)
-  df2 = data.frame(Yield = outcome2, g = prob2)
+  df1 = data.frame(Yield = outcome1, prob1 = prob1)
+  df2 = data.frame(Yield = outcome2, prob2 = prob2)
 
   library(dplyr)
   library(tidyr)
 
   df = df1 %>%
     full_join(df2, by = 'Yield') %>%
-    replace_na(list(f=0,g=0)) %>%
+    replace_na(list(prob1=0, prob2=0)) %>%
     arrange(Yield) %>%
-    mutate('F' = cumsum(f), G = cumsum(g))
+    mutate(cdf1 = cumsum(f), cdf2 = cumsum(g)) %>%
+    mutate(ssd1 = ssd.calc(Yield, cdf1), ssd2 = ssd.calc(Yield, cdf2))
 
   new('Distributions', outcome = df$Yield, prob1 = df$f, prob2 = df$g,
       cum.prob1 = df$F, cum.prob2 = df$G)
+}
+
+#' Calculates the SSD values for a prospect.
+#'
+#' @param outcome Numeric vector, indicating the outcome values.
+#' @param cdf Numeric vector, indicating the cumulative probabilities.
+#' @returns Numeric vector, indicating the SSD values.
+#' @examples
+#' outcome = c(1,4,7)
+#' cdf = c(1/3,2/3,1)
+#' ssd.calc(outcome, cdf)
+#'
+ssd.calc = function(outcome, cdf){
+
+  ssd = cumsum(lag(cdf, default = 0) * (outcome - lag(outcome, default = 0)))
+
+  return(ssd)
 }
