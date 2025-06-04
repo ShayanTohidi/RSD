@@ -31,11 +31,7 @@ afsd.test = function(sd.obj){
     stop("Input must be of class 'StochasticDominance'.")
   }
 
-  outcome = sd.obj@outcome
-  cdf1 = sd.obj@cdf1
-  cdf2 = sd.obj@cdf2
-
-  area = calc.betw.cdf.area(outcome, cdf1, cdf2)
+  area = area.btwn.cdfs.calc(sd.obj)
   total.area = sum(abs(area))
   neg.area = abs(sum(area[area < 0]))
   pos.area = sum(area[area > 0])
