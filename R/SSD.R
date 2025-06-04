@@ -23,17 +23,13 @@
 #'  ssd.test(dists)
 #'
 #' @export
-ssd.test = function(dists.obj){
+ssd.test = function(sd.obj){
 
-  if(!is(dists.obj, 'Distributions')){
-    stop("Input must be of class 'Distributions'.")
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
   }
 
-  ssd.result = ssd.calc(dists.obj)
+  winner = comparison(sd.obj@ssd1, sd.obj@ssd2)
 
-  winner = comparison(ssd.result$ssd1, ssd.result$ssd2)
-
-  return(list(ssd1 = ssd.result$ssd1, ssd2 = ssd.result$ssd2, winner = winner))
+  return(winner)
 }
-
-
