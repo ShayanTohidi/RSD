@@ -43,21 +43,27 @@ setClass(
   }
 )
 
-#' Constructor of Distributions Class
+#' Constructor of StochasticDominance Class
 #'
 #' It is much easier to use this constructor to create an instance of the
-#' Distributions class.
+#' StochasticDominance class. It handles calculation of the cdf and ssd values
+#' in an efficient way.
 #'
-#' @seealso [Distributions()]
+#' @seealso [StochasticDominance()]
 #'
 #' @param outcome1,outcome2 Numeric vectors. The outcomes corresponding to each
 #' prospect.
 #' @param prob1,prob2 Numeric vectors. The probabilities corresponding to each
 #' prospect.
-#' @returns Distributions object.
+#' @returns StochasticDominance object.
+#' @examples
+#' createStochasticDominance(outcome1 = c(1,4,7),
+#'                           outcome2 = c(2,3,5),
+#'                           prob1 = c(1/3,1/3,1/3),
+#'                           prob2 = c(1/6,1/6,2/3))
 #'
 #' @export
-createDistributions = function(outcome1, outcome2, prob1, prob2){
+createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
 
   if(length(outcome1) != length(prob1)){
     stop("Error: The length of 'outcome1' and 'prob1' must be equal.")
