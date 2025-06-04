@@ -6,8 +6,7 @@
 #' The parameter `names` only accepts character vector, otherwise an error will
 #' be raised.
 #'
-#' The function shows a step plot that includes both CDFs, and return the plot
-#' object for further modifications.
+#' The function shows the step plot, and returns its object for further modifications.
 #'
 #' @param sd.obj StochasticDominance object.
 #' @param names A character vector, including the names of prospects in order.
