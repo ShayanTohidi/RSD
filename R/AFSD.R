@@ -13,7 +13,7 @@
 #' larger than `cdf2`. `negative.area` is like `positive.area` for negative
 #' values.
 #'
-#' @seealso [calc.betw.cdf.area()] for area calculations.
+#' @seealso [area.btwn.cdfs.calc()] for area calculations.
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including all the calculation details.
