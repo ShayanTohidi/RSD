@@ -29,9 +29,17 @@ setClass(
     if(length(object@outcome) != length(object@prob1) |
        length(object@outcome) != length(object@prob2) |
        length(object@outcome) != length(object@cdf1) |
-       length(object@outcome) != length(object@cdf2)) return('Length of the input arguments must be equal.')
+       length(object@outcome) != length(object@cdf2)) {
+      return('Length of the input arguments must be equal.')
+    }
     if(any(cumsum(object@prob1) != object@cdf1) |
-       any(cumsum(object@prob2) != object@cdf2)) return('Probability and cumulative arguments do not match.')
+       any(cumsum(object@prob2) != object@cdf2)) {
+      return('Probability and cumulative arguments do not match.')
+    }
+    if(any(ssd.calc(object@outcome, object@cdf1) != object@ssd1) |
+       any(ssd.calc(object@outcome, object@cdf2) != object@ssd2)) {
+      return('SSD arguments do not match with others.')
+    }
   }
 )
 
@@ -73,11 +81,11 @@ createDistributions = function(outcome1, outcome2, prob1, prob2){
     full_join(df2, by = 'Yield') %>%
     replace_na(list(prob1=0, prob2=0)) %>%
     arrange(Yield) %>%
-    mutate(cdf1 = cumsum(f), cdf2 = cumsum(g)) %>%
+    mutate(cdf1 = cumsum(prob1), cdf2 = cumsum(prob2)) %>%
     mutate(ssd1 = ssd.calc(Yield, cdf1), ssd2 = ssd.calc(Yield, cdf2))
 
-  new('Distributions', outcome = df$Yield, prob1 = df$f, prob2 = df$g,
-      cum.prob1 = df$F, cum.prob2 = df$G)
+  new('StochasticDominance', outcome = df$Yield, prob1 = df$prob1, prob2 = df$prob2,
+      cum.prob1 = df$cdf1, cum.prob2 = df$cdf2)
 }
 
 #' Calculates the SSD values for a prospect.
