@@ -4,11 +4,10 @@
 \alias{fsd.test}
 \title{Compares random prospects by FSD}
 \usage{
-fsd.test(dists.obj)
+fsd.test(sd.obj)
 }
 \description{
-It compares two random prospects by the first-order stochastic dominance (FSD),
- given the distributions.
+It compares two random prospects by the first-order stochastic dominance (FSD).
 }
 \details{
 @details
@@ -18,12 +17,12 @@ It compares two random prospects by the first-order stochastic dominance (FSD),
  element of the CDF vector must be equal or smaller, and at least one element
  should be smaller for the dominant prospect.
 
- @param dists.obj Distributions object.
+ @param sd.obj StochasticDominance object.
  @returns An integer, indicating the index of the dominant prospect.
  @examples
-dists = createDistributions(outcome1 = c(1,4,7),
-                            outcome2 = c(2,3,5),
-                            prob1 = c(1/3,1/3,1/3),
-                            prob2 = c(1/6,1/6,2/3))
- fsd.test(dists)
+sd = createStochasticDominance(outcome1 = c(1,4,7),
+                               outcome2 = c(2,3,5),
+                               prob1 = c(1/3,1/3,1/3),
+                               prob2 = c(1/6,1/6,2/3))
+ fsd.test(sd)
 }
