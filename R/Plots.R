@@ -91,27 +91,23 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
 #' plot_ssd(obj.fsd$outcome, obj.ssd$ssd1, obj.ssd$ssd2)
 #'
 #' @export
-ssd.plot = function(outcome, ssd1, ssd2, names = c('1', '2')){
+ssd.plot = function(sd.obj, names = c('1', '2')){
 
-  if(!is.numeric(c(outcome, ssd1, ssd2))){
-    stop("Error: all arguments should be numeric.")
-  }
-
-  if(length(outcome) != length(ssd1)){
-    stop("Error: The length of 'outcome' and 'ssd1' must be equal.")
-  }
-
-  if(length(outcome) != length(ssd2)){
-    stop("Error: The length of 'outcome' and 'ssd2' must be equal.")
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
   }
 
   if(!is.character(names)){
     stop("Error: argument 'names' must be character.")
   }
 
-  data = data.frame('Outcome' = outcome, 'ssd_1' = ssd1, 'ssd_2' = ssd2)
+  outcome = sd.obj@outcome
+  ssd1 = sd.obj@ssd1
+  ssd2 = sd.obj@ssd2
   name1 = names[1]
   name2 = names[2]
+
+  data = data.frame('Outcome' = outcome, 'ssd_1' = ssd1, 'ssd_2' = ssd2)
 
   library(dplyr)
   library(tidyr)
