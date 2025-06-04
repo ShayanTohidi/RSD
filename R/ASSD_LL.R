@@ -20,26 +20,29 @@ calc.assd.ll = function(area, pos.neg.area.assd.ll, exp.val){
   return(list(winner = winner, epsilon = epsilon))
 }
 
-calc.pos.neg.assd.ll = function(cdf.res, new.yield.ssd){
+pos.neg.area.assd.ll = function(sd.obj){
+
+  new.outcome.ssd = modif.outcome.ssd.calc(sd.obj)
+
   pos = 0
   neg = 0
 
   i=1
   j=1
   while (i < length(cdf.res$outcome)) {
-    y1 = new.yield.ssd$outcome[j]
-    cdf1 = cdf.res$cdf1[i]
-    cdf2 = cdf.res$cdf2[i]
-    if(cdf.res$outcome[i+1] == new.yield.ssd$outcome[j+1]){
-      y2 = cdf.res$outcome[i+1]
-      ssd1 = new.yield.ssd$ssd1[j+1]
-      ssd2 = new.yield.ssd$ssd2[j+1]
+    y1 = new.outcome.ssd$outcome.new[j]
+    cdf1 = sd.obj@cdf1[i]
+    cdf2 = sd.obj@cdf2[i]
+    if(sd.obj@outcome[i+1] == new.outcome.ssd$outcome.new[j+1]){
+      y2 = sd.obj@outcome[i+1]
+      ssd1 = new.outcome.ssd$ssd1.new[j+1]
+      ssd2 = new.outcome.ssd$ssd2.new[j+1]
       i = i + 1
       j = j + 1
     } else {
-      y2 = new.yield.ssd$outcome[j+1]
-      ssd1 = new.yield.ssd$ssd1[j]
-      ssd2 = new.yield.ssd$ssd2[j]
+      y2 = new.outcome.ssd$outcome.new[j+1]
+      ssd1 = new.outcome.ssd$ssd1.new[j]
+      ssd2 = new.outcome.ssd$ssd2.new[j]
       j = j + 1
     }
     area = (y2-y1)*(cdf1-cdf2)
