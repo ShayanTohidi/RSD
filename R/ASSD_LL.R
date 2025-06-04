@@ -1,15 +1,24 @@
 
-calc.assd.ll = function(area, pos.neg.area.assd.ll, exp.val){
+assd.ll.test = function(sd.obj){
 
-  total.area = sum(abs(area))
+  if(!is(sd.obj, 'StochasticDominance')){
+    stop("Input must be of class 'StochasticDominance'.")
+  }
 
-  pos.area = pos.neg.area.assd.ll$positive.area
-  neg.area = pos.neg.area.assd.ll$negative.area
+  exp.val = expected.values(sd.obj)
+  mean1 = exp.val$mean1
+  mean2 = exp.val$mean2
 
-  if(pos.area/total.area < 0.5 & exp.val$mean1 >= exp.val$mean2){
+  pos.neg.areas = pos.neg.area.assd.ll(sd.obj)
+  pos.area = pos.neg.areas$positive.area
+  neg.area = pos.neg.areas$negative.area
+
+  total.area = afsd.test(sd.obj)$total.area
+
+  if(pos.area/total.area < 0.5 & mean1 >= mean2){
     winner = 1
     epsilon = round(pos.area/total.area,3)
-  } else if(neg.area/total.area < 0.5 & exp.val$mean1 <= exp.val$mean2){
+  } else if(neg.area/total.area < 0.5 & mean1 <= mean2){
     winner = 2
     epsilon = round(neg.area/total.area,3)
   } else {
