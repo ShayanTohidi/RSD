@@ -1,3 +1,29 @@
+#' Compares random prospects by ASSD-THS
+#'
+#' It uses the areas between the SSD functions, and the
+#' expected values of the prospects to compare them based on the ASSD-THS rule.
+#' If the violation area ratio is less than 0.5 for a prospect, and its expected
+#' value is larger, it dominates the other by ASSD-THS.
+#'
+#' @details
+#' epsilon shows the ratio of the violation. Smaller epsilon means more
+#' decision-makers agree with the result.
+#'
+#' The returned list has six elements: `winner` indicates the dominant prospect
+#' index. It will be zero if neither dominates the other. `epsilon` is the ratio
+#' of violated area to the total area between the SSDs. `area` is a vector, where
+#' the values show the area between the SSDs correspond to each segment.
+#' `total.area` is the total area between the SSDs. `positive.area` is the
+#' amount of area where the `area` vector is positive, meaning the `ssd1` is
+#' larger than `ssds2`. `negative.area` is like `positive.area` for negative
+#' values.
+#'
+#' @seealso [expected.values(), area.btwn.ssd.calc()] for more details.
+#'
+#' @param sd.obj StochasticDominance object.
+#' @returns A list, including all the calculation details.
+#' @examples
+#' # example code
 #'
 assd.ths.test = function(sd.obj){
 
