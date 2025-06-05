@@ -18,18 +18,18 @@ calc.assd.ths = function(area, exp.val){
               positive.area = pos.area))
 }
 
-calc.area.betw.ssd = function(new.yield.ssd){
-  yield = new.yield.ssd$outcome
-  ssd1 = new.yield.ssd$ssd1
-  ssd2 = new.yield.ssd$ssd2
+area.btwn.ssd.calc = function(sd.obj){
 
-  area1 = calc.area.below.ssd(yield, ssd1)
-  area2 = calc.area.below.ssd(yield, ssd2)
+  new.outcome.ssd = modif.outcome.ssd.calc(sd.obj)
+
+  area1 = area.below.ssd.calc(new.outcome.ssd$outcome, new.outcome.ssd$ssd1)
+  area2 = area.below.ssd.calc(new.outcome.ssd$outcome, new.outcome.ssd$ssd2)
 
   return(area1 - area2)
 }
 
-calc.area.below.ssd = function(outcome, ssd){
+area.below.ssd.calc = function(outcome, ssd){
+
   area = c()
   n = length(outcome)
   for (i in 1:(n-1)) {
