@@ -61,10 +61,16 @@ assd.ths.test = function(sd.obj){
 #'
 #' For every segments, the area between SSD functions will be computed.
 #'
+#' @seealso [modif.outcome.ssd.calc(), area.below.ssd.calc()] for more details.
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns Numeric vector, including area differences in every segments.
 #' @examples
-#' # example code
+#' sd = createStochasticDominance(outcome1 = c(1,4,7),
+#'                                outcome2 = c(2,3,5),
+#'                                prob1 = c(1/3,1/3,1/3),
+#'                                prob2 = c(1/6,1/6,2/3))
+#' area.btwn.ssd.calc(sd)
 #'
 area.btwn.ssd.calc = function(sd.obj){
 
