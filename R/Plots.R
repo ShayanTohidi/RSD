@@ -8,6 +8,10 @@
 #'
 #' The function shows the step plot, and returns its object for further modifications.
 #'
+#' @importFrom dplyr mutate select
+#' @importFrom tidyr pivot_longer separate
+#' @importFrom ggplot2 ggplot aes geom_step theme guides
+#'
 #' @param sd.obj StochasticDominance object.
 #' @param names A character vector, including the names of prospects in order.
 #' @returns A list, including plot elements.
@@ -29,17 +33,17 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
     stop("Error: argument 'names' must be character.")
   }
 
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("Package 'ggplot2' is required to use this function.")
-  }
-
-  if (!requireNamespace("dplyr", quietly = TRUE)) {
-    stop("Package 'dplyr' is required to use this function.")
-  }
-
-  if (!requireNamespace("tidyr", quietly = TRUE)) {
-    stop("Package 'tidyr' is required to use this function.")
-  }
+  # if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  #   stop("Package 'ggplot2' is required to use this function.")
+  # }
+  #
+  # if (!requireNamespace("dplyr", quietly = TRUE)) {
+  #   stop("Package 'dplyr' is required to use this function.")
+  # }
+  #
+  # if (!requireNamespace("tidyr", quietly = TRUE)) {
+  #   stop("Package 'tidyr' is required to use this function.")
+  # }
 
   outcome = sd.obj@outcome
   cdf1 = sd.obj@cdf1
@@ -53,23 +57,23 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
   # library(tidyr)
 
   df = data %>%
-    tidyr::pivot_longer(cols = starts_with('cdf'), names_to = 'prospects',
+    pivot_longer(cols = starts_with('cdf'), names_to = 'prospects',
                  values_to = 'CDF') %>%
-    tidyr::separate(prospects, sep = '_', into = c('cdf', 'prospects')) %>%
-    dplyr::mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
-    dplyr::select(-cdf, -prospects)
+    separate(prospects, sep = '_', into = c('cdf', 'prospects')) %>%
+    mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
+    select(-cdf, -prospects)
 
   # library(ggplot2)
 
-  plot = ggplot2::ggplot(df, mapping = aes(x=Outcomes, y=CDF)) +
-    ggplot2::geom_step(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
-    ggplot2::theme(axis.title = element_text(size = 18, face = 'bold'),
+  plot = ggplot(df, mapping = aes(x=Outcomes, y=CDF)) +
+    geom_step(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
+    theme(axis.title = element_text(size = 18, face = 'bold'),
           axis.text = element_text(size = 14),
           legend.title = element_text(face = 'bold', size = 18),
           legend.text = element_text(size = 14),
           legend.position = 'bottom',
           legend.background = element_blank()) +
-    ggplot2::guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
+    guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
   show(plot)
 
