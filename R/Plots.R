@@ -37,27 +37,27 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
 
   data = data.frame('Outcomes' = outcome, 'cdf_1' = cdf1, 'cdf_2' = cdf2)
 
-  library(dplyr)
-  library(tidyr)
+  # library(dplyr)
+  # library(tidyr)
 
   df = data %>%
-    pivot_longer(cols = starts_with('cdf'), names_to = 'prospects',
+    tidyr::pivot_longer(cols = starts_with('cdf'), names_to = 'prospects',
                  values_to = 'CDF') %>%
-    separate(prospects, sep = '_', into = c('cdf', 'prospects')) %>%
-    mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
-    select(-cdf, -prospects)
+    tidyr::separate(prospects, sep = '_', into = c('cdf', 'prospects')) %>%
+    dplyr::mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
+    dplyr::select(-cdf, -prospects)
 
-  library(ggplot2)
+  # library(ggplot2)
 
-  plot = ggplot(df, mapping = aes(x=Outcomes, y=CDF)) +
-    geom_step(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
-    theme(axis.title = element_text(size = 18, face = 'bold'),
+  plot = ggplot2::ggplot(df, mapping = aes(x=Outcomes, y=CDF)) +
+    ggplot2::geom_step(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
+    ggplot2::theme(axis.title = element_text(size = 18, face = 'bold'),
           axis.text = element_text(size = 14),
           legend.title = element_text(face = 'bold', size = 18),
           legend.text = element_text(size = 14),
           legend.position = 'bottom',
           legend.background = element_blank()) +
-    guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
+    ggplot2::guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
   show(plot)
 
@@ -103,27 +103,27 @@ ssd.plot = function(sd.obj, names = c('1', '2')){
 
   data = data.frame('Outcome' = outcome, 'ssd_1' = ssd1, 'ssd_2' = ssd2)
 
-  library(dplyr)
-  library(tidyr)
+  # library(dplyr)
+  # library(tidyr)
 
   df = data %>%
-    pivot_longer(cols = starts_with('ssd_'), names_to = 'prospects',
+    tidyr::pivot_longer(cols = starts_with('ssd_'), names_to = 'prospects',
                  values_to = 'SSD') %>%
-    separate(prospects, sep = '_', into = c('ssd', 'prospects')) %>%
-    mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
-    select(-ssd, -prospects)
+    tidyr::separate(prospects, sep = '_', into = c('ssd', 'prospects')) %>%
+    dplyr::mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
+    dplyr::select(-ssd, -prospects)
 
-  library(ggplot2)
+  # library(ggplot2)
 
-  plot = ggplot(df, mapping = aes(x=Outcome, y=SSD)) +
-    geom_line(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
-    theme(axis.title = element_text(size = 18, face = 'bold'),
+  plot = ggplot2::ggplot(df, mapping = aes(x=Outcome, y=SSD)) +
+    ggplot2::geom_line(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
+    ggplot2::theme(axis.title = element_text(size = 18, face = 'bold'),
           axis.text = element_text(size = 14),
           legend.title = element_text(face = 'bold', size = 18),
           legend.text = element_text(size = 14),
           legend.position = 'bottom',
           legend.background = element_blank()) +
-    guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
+    ggplot2::guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
   show(plot)
 
