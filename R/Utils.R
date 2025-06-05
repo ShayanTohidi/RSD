@@ -156,7 +156,7 @@ modif.outcome.ssd.calc = function(sd.obj){
   new.ssd1 = sd.obj@ssd1
   new.ssd2 = sd.obj@ssd2
 
-  n = length(outcome)
+  n = length(sd.obj@outcome)
   for (i in 1:(n-1)) {
     if(has.intersect(sd.obj@outcome[i], sd.obj@outcome[i+1],
                      sd.obj@ssd1[i], sd.obj@ssd1[i+1],
