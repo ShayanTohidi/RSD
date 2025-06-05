@@ -111,7 +111,7 @@ ssd.plot = function(sd.obj, names = c('1', '2')){
                  values_to = 'SSD') %>%
     separate(prospects, sep = '_', into = c('ssd', 'prospects')) %>%
     mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
-    select(-cdf, -prospects)
+    select(-ssd, -prospects)
 
   library(ggplot2)
 
