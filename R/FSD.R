@@ -1,17 +1,17 @@
-#'  Compares random prospects by FSD
+#' Compares random prospects by FSD
 #'
-#'  It compares two random prospects by the first-order stochastic dominance (FSD).
+#' It compares two random prospects by the first-order stochastic dominance (FSD).
 #'
-#'  @details
-#'  If neither prospect dominates the other, it returns 0.
+#' @details
+#' If neither prospect dominates the other, it returns 0.
 #'
-#'  A prospect dominates when its CDF is below the other one. It means that all
-#'  element of the CDF vector must be equal or smaller, and at least one element
-#'  should be smaller for the dominant prospect.
+#' A prospect dominates when its CDF is below the other one. It means that all
+#' element of the CDF vector must be equal or smaller, and at least one element
+#' should be smaller for the dominant prospect.
 #'
-#'  @param sd.obj StochasticDominance object.
-#'  @returns An integer, indicating the index of the dominant prospect.
-#'  @examples
+#' @param sd.obj StochasticDominance object.
+#' @returns An integer, indicating the index of the dominant prospect.
+#' @examples
 #' sd = createStochasticDominance(outcome1 = c(1,4,7),
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
