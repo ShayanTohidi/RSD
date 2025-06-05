@@ -170,6 +170,6 @@ modif.outcome.ssd.calc = function(sd.obj){
     }
   }
 
-  return(list(outcome.new = sort(new.outcome), ssd1.new = sort(new.ssd1),
-              ssd2.new = sort(new.ssd2)))
+  return(list(outcome = sort(new.outcome), ssd1 = sort(new.ssd1),
+              ssd2 = sort(new.ssd2)))
 }
