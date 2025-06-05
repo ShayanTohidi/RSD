@@ -1,12 +1,19 @@
-calc.assd.ths = function(area, exp.val){
+assd.ths.test = function(sd.obj){
+
+  area = area.btwn.ssd.calc(sd.obj)
+
+  exp.val = expected.values(sd.obj)
+  mean1 = exp.val$mean1
+  mean2 = exp.val$mean2
+
   total.area = sum(abs(area))
   neg.area = abs(sum(area[area < 0]))
   pos.area = sum(area[area > 0])
 
-  if(neg.area/total.area < 0.5 & exp.val$mean2 >= exp.val$mean1){
+  if(neg.area/total.area < 0.5 & mean2 >= mean1){
     winner = 2
     epsilon = round(neg.area/total.area,3)
-  } else if(pos.area/total.area < 0.5 & exp.val$mean2 <= exp.val$mean1){
+  } else if(pos.area/total.area < 0.5 & mean2 <= mean1){
     winner = 1
     epsilon = round(pos.area/total.area,3)
   } else {
