@@ -29,6 +29,18 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
     stop("Error: argument 'names' must be character.")
   }
 
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("Package 'ggplot2' is required to use this function.")
+  }
+
+  if (!requireNamespace("dplyr", quietly = TRUE)) {
+    stop("Package 'dplyr' is required to use this function.")
+  }
+
+  if (!requireNamespace("tidyr", quietly = TRUE)) {
+    stop("Package 'tidyr' is required to use this function.")
+  }
+
   outcome = sd.obj@outcome
   cdf1 = sd.obj@cdf1
   cdf2 = sd.obj@cdf2
