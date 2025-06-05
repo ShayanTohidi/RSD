@@ -85,7 +85,7 @@ pos.neg.area.assd.ll = function(sd.obj){
 
   i=1
   j=1
-  while (i < length(cdf.res$outcome)) {
+  while (i < length(sd.obj@outcome)) {
     y1 = new.outcome.ssd$outcome[j]
     cdf1 = sd.obj@cdf1[i]
     cdf2 = sd.obj@cdf2[i]
