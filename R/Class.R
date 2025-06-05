@@ -53,6 +53,9 @@ setClass(
 #'
 #' @seealso [StochasticDominance()]
 #'
+#' @importFrom dplyr full_join mutate arrange
+#' @importFrom tidyr replace_na
+#'
 #' @param outcome1,outcome2 Numeric vectors. The outcomes corresponding to each
 #' prospect.
 #' @param prob1,prob2 Numeric vectors. The probabilities corresponding to each
@@ -82,8 +85,8 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
   df1 = data.frame(Yield = outcome1, prob1 = prob1)
   df2 = data.frame(Yield = outcome2, prob2 = prob2)
 
-  library(dplyr)
-  library(tidyr)
+  # library(dplyr)
+  # library(tidyr)
 
   df = df1 %>%
     full_join(df2, by = 'Yield') %>%
