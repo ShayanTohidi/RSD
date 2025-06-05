@@ -1,12 +1,15 @@
 Package: RSD
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Compares random prospects using Stochastic Dominance
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Shayan Tohidi, Sigurdur Olafsson
+Maintainer: Shayan Tohidi <shayant@iastate.edu>
+Description: This package compares random prospects by Stochastic Dominance (SD),
+    and having the corresponding discrete distributions. Using this package, one
+    can compare prospects by FSD, SSD, AFSD, and ASSD. Moreover, the new heuristic
+    method that is developed on top of the SSD, RSSD, is also added to this
+    package.
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/ShayanTohidi/RSD
