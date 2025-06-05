@@ -1,3 +1,4 @@
+#'
 assd.ths.test = function(sd.obj){
 
   area = area.btwn.ssd.calc(sd.obj)
@@ -21,8 +22,9 @@ assd.ths.test = function(sd.obj){
     epsilon = round(min(pos.area,neg.area)/total.area,3)
   }
 
-  return(list(winner = winner, epsilon = epsilon, negative.area = neg.area,
-              positive.area = pos.area))
+  return(list(winner = winner, epsilon = epsilon, area = area,
+              total.area = total.area, positive.area = pos.area,
+              negative.area = neg.area))
 }
 
 #' Calculates area between SSD functions
