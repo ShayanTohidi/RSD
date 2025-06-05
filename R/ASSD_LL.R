@@ -44,7 +44,9 @@ assd.ll.test = function(sd.obj){
     epsilon = round(min(neg.area,pos.area)/total.area,3)
   }
 
-  return(list(winner = winner, epsilon = epsilon))
+  return(list(winner = winner, epsilon = epsilon, area = pos.neg.areas$area,
+              total.area = total.area, positive.area = pos.area,
+              negative.area = neg.area))
 }
 
 #' Calculates positive and negative area between CDFs for ASSD-LL
@@ -96,5 +98,5 @@ pos.neg.area.assd.ll = function(sd.obj){
     if(area < 0 & ssd.diff < 0) neg = neg + abs(area)
   }
 
-  return(list(positive.area = pos, negative.area = neg))
+  return(list(positive.area = pos, negative.area = neg, area = area))
 }
