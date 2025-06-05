@@ -9,11 +9,20 @@
 #' epsilon shows the ratio of the violation. Smaller epsilon means more
 #' decision-makers agree with the result.
 #'
+#' The returned list has six elements: `winner` indicates the dominant prospect
+#' index. It will be zero if neither dominates the other. `epsilon` is the ratio
+#' of violated area to the total area between the CDFs. `area` is a vector, where
+#' the values show the area between the CDFs correspond to each segment.
+#' `total.area` is the total area between the CDFs. `positive.area` is the
+#' amount of area where the `area` vector is positive, meaning the `cdf1` is
+#' larger than `cdf2` and `ssd1` is larger than `ssd2`. `negative.area` is like
+#' `positive.area` for negative values.
+#'
 #' @seealso [expected.values(), pos.neg.area.assd.ll(), afsd.test()] for more
 #' details.
 #'
 #' @param sd.obj StochasticDominance object.
-#' @returns A list, including the index of the dominant prospect and the epsilon.
+#' @returns A list, including all the calculation details.
 #' @examples
 #' sd = createStochasticDominance(outcome1 = c(1,4,7),
 #'                                outcome2 = c(2,3,5),
