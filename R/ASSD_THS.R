@@ -25,6 +25,15 @@ assd.ths.test = function(sd.obj){
               positive.area = pos.area))
 }
 
+#' Calculates area between SSD functions
+#'
+#' For every segments, the area between SSD functions will be computed.
+#'
+#' @param sd.obj StochasticDominance object.
+#' @returns Numeric vector, including area differences in every segments.
+#' @examples
+#' # example code
+#'
 area.btwn.ssd.calc = function(sd.obj){
 
   new.outcome.ssd = modif.outcome.ssd.calc(sd.obj)
@@ -35,6 +44,18 @@ area.btwn.ssd.calc = function(sd.obj){
   return(area1 - area2)
 }
 
+#' Calculates area below SSD function
+#'
+#' For every segment, the area below SSD function will be computed.
+#'
+#' @seealso [calc.area.below.line()] for area below line.
+#'
+#' @param outcome Numeric vector, including outcome values.
+#' @param ssd Numeric vector, including SSD values.
+#' @returns Numeric vector, including area below every segment of SSD function.
+#' @examples
+#' # example code
+#'
 area.below.ssd.calc = function(outcome, ssd){
 
   area = c()
