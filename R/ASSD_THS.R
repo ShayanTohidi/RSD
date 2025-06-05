@@ -23,7 +23,11 @@
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including all the calculation details.
 #' @examples
-#' # example code
+#' sd = createStochasticDominance(outcome1 = c(1,4,7),
+#'                                outcome2 = c(2,3,5),
+#'                                prob1 = c(1/3,1/3,1/3),
+#'                                prob2 = c(1/6,1/6,2/3))
+#' assd.ths.test(sd)
 #'
 assd.ths.test = function(sd.obj){
 
