@@ -41,15 +41,18 @@ assd.ths.test = function(sd.obj){
   neg.area = abs(sum(area[area < 0]))
   pos.area = sum(area[area > 0])
 
-  if(neg.area/total.area < 0.5 & mean2 >= mean1){
+  pos.ratio = ifelse(is.na(pos.area/total.area), 0, pos.area/total.area)
+  neg.ratio = ifelse(is.na(neg.area/total.area), 0, neg.area/total.area)
+
+  if(neg.ratio < 0.5 & mean2 >= mean1){
     winner = 2
-    epsilon = round(neg.area/total.area,3)
-  } else if(pos.area/total.area < 0.5 & mean2 <= mean1){
+    epsilon = round(neg.ratio,3)
+  } else if(pos.ratio < 0.5 & mean2 <= mean1){
     winner = 1
-    epsilon = round(pos.area/total.area,3)
+    epsilon = round(pos.ratio,3)
   } else {
     winner = 0
-    epsilon = round(min(pos.area,neg.area)/total.area,3)
+    epsilon = round(min(pos.ratio,neg.ratio),3)
   }
 
   return(list(winner = winner, epsilon = epsilon, area = area,
