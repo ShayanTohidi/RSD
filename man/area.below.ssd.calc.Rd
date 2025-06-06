@@ -18,7 +18,9 @@ Numeric vector, including area below every segment of SSD function.
 For every segment, the area below SSD function will be computed.
 }
 \examples{
-# example code
+outcome = c(1,2,3,4,5,7)
+ssd = c(0, 0.33, 0.67, 1, 1.67, 3)
+# area.below.ssd.calc(outcome, ssd)
 
 }
 \seealso{
