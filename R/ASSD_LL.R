@@ -42,15 +42,18 @@ assd.ll.test = function(sd.obj){
 
   total.area = afsd.test(sd.obj)$total.area
 
-  if(pos.area/total.area < 0.5 & mean1 >= mean2){
+  pos.ratio = ifelse(is.na(pos.area/total.area), 0, pos.area/total.area)
+  neg.ratio = ifelse(is.na(neg.area/total.area), 0, neg.area/total.area)
+
+  if(pos.ratio < 0.5 & mean1 >= mean2){
     winner = 1
-    epsilon = round(pos.area/total.area,3)
-  } else if(neg.area/total.area < 0.5 & mean1 <= mean2){
+    epsilon = round(pos.ratio,3)
+  } else if(neg.ratio < 0.5 & mean1 <= mean2){
     winner = 2
-    epsilon = round(neg.area/total.area,3)
+    epsilon = round(neg.ratio,3)
   } else {
     winner = 0
-    epsilon = round(min(neg.area,pos.area)/total.area,3)
+    epsilon = round(min(pos.ratio,neg.ratio),3)
   }
 
   return(list(winner = winner, epsilon = epsilon, area = pos.neg.areas$area,
