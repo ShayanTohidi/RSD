@@ -19,7 +19,7 @@
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#' plot = fsd.plot(sd, names = c('First', 'Second'))
+#' fsd.plot(sd, names = c('First', 'Second'))
 #'
 #' @export
 fsd.plot = function(sd.obj, names = c('1', '2')){
@@ -57,8 +57,6 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
           legend.background = ggplot2::element_blank()) +
     ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
-  show(plot)
-
   return(plot)
 }
 
@@ -83,7 +81,7 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#' plot = ssd.plot(sd, names = c('First', 'Second'))
+#' ssd.plot(sd, names = c('First', 'Second'))
 #'
 #' @export
 ssd.plot = function(sd.obj, names = c('1', '2')){
@@ -120,8 +118,6 @@ ssd.plot = function(sd.obj, names = c('1', '2')){
           legend.position = 'bottom',
           legend.background = ggplot2::element_blank()) +
     ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
-
-  show(plot)
 
   return(plot)
 }
