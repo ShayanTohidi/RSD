@@ -10,8 +10,8 @@ pos.neg.area.assd.ll(sd.obj)
 \item{sd.obj}{StochasticDominance object.}
 }
 \value{
-A list, including two numbers corresponding to the positive and
-negative areas, respectively.
+A list, including three elements corresponding to the positive and
+negative areas, respectively, and the area vector at the end.
 }
 \description{
 It calculates the positive and negative areas between CDFs. The positive is
