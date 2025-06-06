@@ -161,7 +161,7 @@ modif.outcome.ssd.calc = function(sd.obj){
     if(has.intersection(sd.obj@outcome[i], sd.obj@outcome[i+1],
                      sd.obj@ssd1[i], sd.obj@ssd1[i+1],
                      sd.obj@ssd2[i], sd.obj@ssd2[i+1])){
-      point = calc.intrsection(sd.obj@outcome[i], sd.obj@outcome[i+1],
+      point = calc.intersection(sd.obj@outcome[i], sd.obj@outcome[i+1],
                             sd.obj@ssd1[i], sd.obj@ssd1[i+1],
                             sd.obj@ssd2[i], sd.obj@ssd2[i+1])
       new.outcome = append(new.outcome, point$x.intersect)
