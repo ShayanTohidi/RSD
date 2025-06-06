@@ -103,7 +103,7 @@ ssd.plot = function(sd.obj, names = c('1', '2')){
   data = data.frame('Outcome' = outcome, 'ssd_1' = ssd1, 'ssd_2' = ssd2)
 
   df = data %>%
-    pivot_longer(cols = starts_with('ssd_'), names_to = 'prospects',
+    pivot_longer(cols = starts_with('ssd'), names_to = 'prospects',
                  values_to = 'SSD') %>%
     separate(prospects, sep = '_', into = c('ssd', 'prospects')) %>%
     mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
