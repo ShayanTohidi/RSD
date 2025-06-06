@@ -47,15 +47,15 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
     mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
     select(-cdf, -prospects)
 
-  plot = ggplot2::ggplot(df, mapping = ggplot2::aes(x=Outcomes, y=CDF)) +
-    ggplot2::geom_step(ggplot2::aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
-    ggplot2::theme(axis.title = ggplot2::element_text(size = 18, face = 'bold'),
-          axis.text = ggplot2::element_text(size = 14),
-          legend.title = ggplot2::element_text(face = 'bold', size = 18),
-          legend.text = ggplot2::element_text(size = 14),
+  plot = ggplot(df, mapping = aes(x=Outcomes, y=CDF)) +
+    geom_step(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
+    theme(axis.title = element_text(size = 18, face = 'bold'),
+          axis.text = element_text(size = 14),
+          legend.title = element_text(face = 'bold', size = 18),
+          legend.text = element_text(size = 14),
           legend.position = 'bottom',
-          legend.background = ggplot2::element_blank()) +
-    ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
+          legend.background = element_blank()) +
+    guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
   return(plot)
 }
@@ -109,15 +109,15 @@ ssd.plot = function(sd.obj, names = c('1', '2')){
     mutate(Prospects = case_when(prospects == 1 ~ name1, TRUE ~ name2)) %>%
     select(-ssd, -prospects)
 
-  plot = ggplot2::ggplot(df, mapping = ggplot2::aes(x=Outcome, y=SSD)) +
-    ggplot2::geom_line(ggplot2::aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
-    ggplot2::theme(axis.title = ggplot2::element_text(size = 18, face = 'bold'),
-          axis.text = ggplot2::element_text(size = 14),
-          legend.title = ggplot2::element_text(face = 'bold', size = 18),
-          legend.text = ggplot2::element_text(size = 14),
+  plot = ggplot(df, mapping = aes(x=Outcome, y=SSD)) +
+    geom_line(aes(color = Prospects), linewidth = 1.5, alpha = 0.7) +
+    theme(axis.title = element_text(size = 18, face = 'bold'),
+          axis.text = element_text(size = 14),
+          legend.title = element_text(face = 'bold', size = 18),
+          legend.text = element_text(size = 14),
           legend.position = 'bottom',
-          legend.background = ggplot2::element_blank()) +
-    ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
+          legend.background = element_blank()) +
+    guides(color = guide_legend(override.aes = list(linewidth = 1.5, size = 10)))
 
   return(plot)
 }
