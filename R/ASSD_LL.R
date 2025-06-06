@@ -70,8 +70,8 @@ assd.ll.test = function(sd.obj){
 #' @seealso [modif.outcome.ssd.calc()] for more details.
 #'
 #' @param sd.obj StochasticDominance object.
-#' @returns A list, including two numbers corresponding to the positive and
-#' negative areas, respectively.
+#' @returns A list, including three elements corresponding to the positive and
+#' negative areas, respectively, and the area vector at the end.
 #' @examples
 #' sd = createStochasticDominance(outcome1 = c(1,4,7),
 #'                                outcome2 = c(2,3,5),
