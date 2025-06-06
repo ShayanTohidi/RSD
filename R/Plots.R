@@ -8,7 +8,7 @@
 #'
 #' The function shows the step plot, and returns its object for further modifications.
 #'
-#' @importFrom dplyr mutate select
+#' @importFrom dplyr mutate select case_when
 #' @importFrom tidyr pivot_longer separate
 #'
 #' @param sd.obj StochasticDominance object.
