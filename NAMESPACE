@@ -1,6 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 importFrom(magrittr,"%>%")
-importFrom(dplyr, full_join, arrange, mutate, select, case_when)
+importFrom(dplyr, full_join, arrange, mutate, select, case_when, lag)
 importFrom(tidyr, pivot_longer, separate, replace_na)
 importFrom(methods, setClass)
 importFrom(ggplot2, ggplot, aes, geom_line, theme, element_text, element_blank,
