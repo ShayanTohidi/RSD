@@ -57,6 +57,8 @@ afsd.test = function(sd.obj){
 #' It calculates the area between the CDFs of two prospects divided by the CDFs
 #' and outcomes segments.
 #'
+#' @importFrom dplyr lag
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns A numeric vector, including the area between the segments of CDFs.
 #' @examples
@@ -64,7 +66,7 @@ afsd.test = function(sd.obj){
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#' area.btwn.cdfs.calc(sd)
+#' # area.btwn.cdfs.calc(sd)
 #'
 area.btwn.cdfs.calc = function(sd.obj){
 
