@@ -85,6 +85,7 @@ pos.neg.area.assd.ll = function(sd.obj){
 
   pos = 0
   neg = 0
+  area.vec = c()
 
   i=1
   j=1
@@ -105,10 +106,11 @@ pos.neg.area.assd.ll = function(sd.obj){
       j = j + 1
     }
     area = (y2-y1)*(cdf1-cdf2)
+    area.vec = append(area.vec, area)
     ssd.diff = ssd1 - ssd2
     if(area > 0 & ssd.diff > 0) pos = pos + area
     if(area < 0 & ssd.diff < 0) neg = neg + abs(area)
   }
 
-  return(list(positive.area = pos, negative.area = neg, area = area))
+  return(list(positive.area = pos, negative.area = neg, area = area.vec))
 }
