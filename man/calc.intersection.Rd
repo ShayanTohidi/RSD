@@ -30,7 +30,7 @@ y11 = 1
 y12 = 6
 y21 = 3
 y22 = 4
-calc.intersection(x1, x2, y11, y12, y21, y22)
+# calc.intersection(x1, x2, y11, y12, y21, y22)
 
 }
 \seealso{

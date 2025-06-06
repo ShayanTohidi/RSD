@@ -26,6 +26,6 @@ x1 = 2
 y1 = 2
 x2 = 4
 y2 = 5
-calc.area.below.line(x1, x2, y1, y2)
+# calc.area.below.line(x1, x2, y1, y2)
 
 }

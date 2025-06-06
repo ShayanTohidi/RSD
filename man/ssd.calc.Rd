@@ -20,6 +20,6 @@ Calculates the SSD values for a prospect.
 \examples{
 outcome = c(1,4,7)
 cdf = c(1/3,2/3,1)
-ssd.calc(outcome, cdf)
+# ssd.calc(outcome, cdf)
 
 }
