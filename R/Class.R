@@ -9,6 +9,8 @@
 #' having the same lengths, and having matched probability, cumulative, and ssd
 #' arguments.
 #'
+#' @importFrom methods setClass
+#'
 #' @slot outcome Numeric vector. The combined outcome values in ascending order.
 #' @slot prob1,prob2 Numeric vectors. Probabilities corresponding to the prospects.
 #' @slot cdf1,cdf2 Numeric vectors. Cumulative values corresponding to the
@@ -55,6 +57,7 @@ setClass(
 #'
 #' @importFrom dplyr full_join mutate arrange
 #' @importFrom tidyr replace_na
+#' @importFrom magrittr "%>%"
 #'
 #' @param outcome1,outcome2 Numeric vectors. The outcomes corresponding to each
 #' prospect.
@@ -101,13 +104,15 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
 
 #' Calculates the SSD values for a prospect.
 #'
+#' @importFrom dplyr lag
+#'
 #' @param outcome Numeric vector, indicating the outcome values.
 #' @param cdf Numeric vector, indicating the cumulative probabilities.
 #' @returns Numeric vector, indicating the SSD values.
 #' @examples
 #' outcome = c(1,4,7)
 #' cdf = c(1/3,2/3,1)
-#' ssd.calc(outcome, cdf)
+#' # ssd.calc(outcome, cdf)
 #'
 ssd.calc = function(outcome, cdf){
 
