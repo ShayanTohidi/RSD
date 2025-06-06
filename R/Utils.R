@@ -10,7 +10,7 @@
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#' expected.values(sd)
+#' # expected.values(sd)
 #'
 expected.values = function(sd.obj){
 
@@ -34,6 +34,7 @@ expected.values = function(sd.obj){
 #' @examples
 #' x = c(1, 2, 3)
 #' y = c(2, 3, 4)
+#' # comparison(x, y)
 #'
 comparison = function(x, y){
 
@@ -64,7 +65,7 @@ comparison = function(x, y){
 #' y1 = 2
 #' x2 = 4
 #' y2 = 5
-#' calc.area.below.line(x1, x2, y1, y2)
+#' # calc.area.below.line(x1, x2, y1, y2)
 #'
 calc.area.below.line = function(x1, x2, y1, y2){
 
@@ -91,7 +92,7 @@ calc.area.below.line = function(x1, x2, y1, y2){
 #' y12 = 6
 #' y21 = 3
 #' y22 = 4
-#' has.intersection(x1, x2, y11, y12, y21, y22)
+#' # has.intersection(x1, x2, y11, y12, y21, y22)
 #'
 has.intersection = function(x1, x2, y11, y12, y21, y22){
   if((y11<y21 & y12>y22) | (y11>y21 & y12<y22)){
@@ -121,7 +122,7 @@ has.intersection = function(x1, x2, y11, y12, y21, y22){
 #' y12 = 6
 #' y21 = 3
 #' y22 = 4
-#' calc.intersection(x1, x2, y11, y12, y21, y22)
+#' # calc.intersection(x1, x2, y11, y12, y21, y22)
 #'
 calc.intersection = function(x1,x2,y11,y12,y21,y22){
 
@@ -148,7 +149,7 @@ calc.intersection = function(x1,x2,y11,y12,y21,y22){
 #'                                outcome2 = c(2,3,5),
 #'                                prob1 = c(1/3,1/3,1/3),
 #'                                prob2 = c(1/6,1/6,2/3))
-#' modif.outcome.ssd.calc(sd)
+#' # modif.outcome.ssd.calc(sd)
 #'
 modif.outcome.ssd.calc = function(sd.obj){
 
