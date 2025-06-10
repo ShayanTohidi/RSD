@@ -9,6 +9,8 @@
 #'
 #' @seealso [assd.ll.test(), assd.ths.test] for more details.
 #'
+#' @importFrom methods is
+#'
 #' @param sd.obj StochasticDominance object.
 #' @param type A character vector, including the name of ASSD methods.
 #' @returns A list, including calculation details.
