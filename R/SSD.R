@@ -11,6 +11,8 @@
 #'
 #' @seealso [ssd.calc()] for the calculation.
 #'
+#' @importFrom methods is
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns A number. Indicating dominant prospect index.
 #' @examples
