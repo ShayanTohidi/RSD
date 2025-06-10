@@ -1,14 +1,23 @@
 Package: RSD
 Type: Package
-Title: Compares random prospects using Stochastic Dominance
+Title: Compares Random Prospects using Stochastic Dominance
 Version: 0.1.0
-Author: Shayan Tohidi, Sigurdur Olafsson
+Authors@R: c(person(given = "Shayan",
+                      family = "Tohidi",
+                      role = c("aut", "cre"),
+                      email = "shayant@iastate.edu"),
+               person(given = "Sigurdur",
+                      family = "Olafsson",
+                      role = "aut",
+                      email = "olafsson@iastate.edu"))
 Maintainer: Shayan Tohidi <shayant@iastate.edu>
-Description: This package compares random prospects by Stochastic Dominance (SD),
-    and having the corresponding discrete distributions. Using this package, one
-    can compare prospects by FSD, SSD, AFSD, and ASSD. Moreover, the new heuristic
-    method that is developed on top of the SSD, RSSD, is also added to this
-    package.
+Description: The Stochastic Dominance (SD) is the classical way of comparing two
+    random prospects, using their distribution functions. Almost Stochastic
+    Dominance (ASD) has also been developed to cover the SD failures due to 
+    the extreme utility functions. This package focuses on classical and heuristic methods
+    for testing the first and second SD and ASD methods given the probability mass
+    function (PMF) of the random prospects. The goal is to apply these methods
+    easily, efficiently, and effectively on real-world datasets.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
