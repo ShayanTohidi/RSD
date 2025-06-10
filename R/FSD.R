@@ -9,6 +9,8 @@
 #' element of the CDF vector must be equal or smaller, and at least one element
 #' should be smaller for the dominant prospect.
 #'
+#' @importFrom methods is
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns An integer, indicating the index of the dominant prospect.
 #' @examples
