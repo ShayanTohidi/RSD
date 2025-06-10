@@ -9,9 +9,10 @@
 #' The function shows the step plot, and returns its object for further modifications.
 #'
 #' @importFrom dplyr mutate select case_when
-#' @importFrom tidyr pivot_longer separate
+#' @importFrom tidyr pivot_longer separate starts_with
 #' @importFrom ggplot2 ggplot aes geom_step theme element_text element_blank guides guide_legend
 #' @importFrom magrittr "%>%"
+#' @importFrom methods is
 #'
 #' @param sd.obj StochasticDominance object.
 #' @param names A character vector, including the names of prospects in order.
@@ -73,9 +74,10 @@ fsd.plot = function(sd.obj, names = c('1', '2')){
 #' The function shows the line plot and returns its object for further modification.
 #'
 #' @importFrom dplyr mutate select case_when
-#' @importFrom tidyr pivot_longer separate
+#' @importFrom tidyr pivot_longer separate starts_with
 #' @importFrom ggplot2 ggplot aes geom_line theme element_text element_blank guides guide_legend
 #' @importFrom magrittr "%>%"
+#' @importFrom methods is
 #'
 #' @param sd.obj StochasticDominance object.
 #' @param names A character vector, including the names of prospects in order.
