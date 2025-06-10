@@ -8,6 +8,8 @@
 #' @details
 #' If no prospect dominates, the returned index for the winner will be 0.
 #'
+#' @importFrom methods is
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list of three elements, the first two are float, indicating the
 #' RSSD values, and the last one is an integer, representing the index of the
