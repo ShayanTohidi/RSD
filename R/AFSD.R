@@ -15,6 +15,8 @@
 #'
 #' @seealso [area.btwn.cdfs.calc()] for area calculations.
 #'
+#' @importFrom methods is
+#'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including all the calculation details.
 #' @examples
