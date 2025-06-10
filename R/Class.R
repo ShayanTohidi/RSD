@@ -58,6 +58,7 @@ setClass(
 #' @importFrom dplyr full_join mutate arrange
 #' @importFrom tidyr replace_na
 #' @importFrom magrittr "%>%"
+#' @importFrom methods new
 #'
 #' @param outcome1,outcome2 Numeric vectors. The outcomes corresponding to each
 #' prospect.
