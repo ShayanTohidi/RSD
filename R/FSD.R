@@ -27,7 +27,7 @@ fsd.test = function(sd.obj){
     stop("Input must be of class 'StochasticDominance'.")
   }
 
-  winner = comparison(sd.obj@cdf1, sd.obj@cdf1)
+  winner = comparison(sd.obj@cdf1, sd.obj@cdf2)
 
   return(winner)
 }
