@@ -55,7 +55,7 @@ setClass(
 #'
 #' @seealso [StochasticDominance()]
 #'
-#' @importFrom dplyr full_join mutate arrange
+#' @importFrom dplyr full_join mutate arrange group_by summarise ungroup
 #' @importFrom tidyr replace_na
 #' @importFrom magrittr "%>%"
 #' @importFrom methods new
