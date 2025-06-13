@@ -90,11 +90,17 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
     stop("Error: The summation of 'prob2' must be one.")
   }
 
-  df1 = data.frame(Yield = outcome1, prob1 = prob1)
-  df2 = data.frame(Yield = outcome2, prob2 = prob2)
+  df1 = data.frame(Yield = outcome1, pr1 = prob1)
+  df2 = data.frame(Yield = outcome2, pr2 = prob2)
 
-  df = df1 %>%
-    full_join(df2, by = 'Yield') %>%
+  df = (df1 %>%
+          group_by(Yield) %>%
+          summarise(prob1 = sum(pr1)) %>%
+          ungroup()) %>%
+    full_join((df2 %>%
+                 group_by(Yield) %>%
+                 summarise(prob2 = sum(pr2)) %>%
+                 ungroup()), by = 'Yield') %>%
     replace_na(list(prob1=0, prob2=0)) %>%
     arrange(Yield) %>%
     mutate(cdf1 = cumsum(prob1), cdf2 = cumsum(prob2)) %>%
