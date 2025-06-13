@@ -39,14 +39,12 @@ expected.values = function(sd.obj){
 comparison = function(x, y){
 
   if(all(x <= y) & any(x < y)){
-    winner = 1
+    return(1)
   } else if(all(x >= y) & any(x > y)){
-    winner = 2
+    return(2)
   } else{
-    winner = 0
+    return(0)
   }
-
-  return(winner)
 }
 
 #' Calculates the area between x-axis and a straight line
