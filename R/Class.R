@@ -82,15 +82,16 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
     stop("Error: The length of 'outcome2' and 'prob2' must be equal.")
   }
 
-  if(sum(prob1) != 1 | sum(prob2) != 1){
-    stop("Error: The summation of each 'prob1' and 'prob2' must be one.")
+  if(!all.equal(sum(prob1),1)){
+    stop("Error: The summation of 'prob1' must be one.")
+  }
+
+  if(!all.equal(sum(prob2),1)){
+    stop("Error: The summation of 'prob2' must be one.")
   }
 
   df1 = data.frame(Yield = outcome1, prob1 = prob1)
   df2 = data.frame(Yield = outcome2, prob2 = prob2)
-
-  # library(dplyr)
-  # library(tidyr)
 
   df = df1 %>%
     full_join(df2, by = 'Yield') %>%
