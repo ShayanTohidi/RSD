@@ -26,8 +26,8 @@ setClass(
                ssd1 = 'numeric', ssd2 = 'numeric'),
   validity = function(object){
     if(is.unsorted(object@outcome)) return('Outcome must be sorted in ascending order.')
-    if(!all.equal(sum(object@prob1),1)) return('Prob1 must add up to one.')
-    if(!all.equal(sum(object@prob2),1)) return('Prob2 must add up to one.')
+    if(!isTRUE(all.equal(sum(object@prob1),1))) return('Prob1 must add up to one.')
+    if(!isTRUE(all.equal(sum(object@prob2),1))) return('Prob2 must add up to one.')
     if(length(object@outcome) != length(object@prob1) |
        length(object@outcome) != length(object@prob2) |
        length(object@outcome) != length(object@cdf1) |
