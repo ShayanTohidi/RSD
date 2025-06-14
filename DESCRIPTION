@@ -17,7 +17,10 @@ Description: The Stochastic Dominance (SD) is the classical way of comparing two
     the extreme utility functions. This package focuses on classical and heuristic methods
     for testing the first and second SD and ASD methods given the probability mass
     function (PMF) of the random prospects. The goal is to apply these methods
-    easily, efficiently, and effectively on real-world datasets.
+    easily, efficiently, and effectively on real-world datasets. For more
+    details see Hanoch and Levy (1969) <doi:10.2307/2296431>, Leshno and Levy
+    (2002) <doi:10.1287/mnsc.48.8.1074.169>, and Tzeng et al. (2012)
+    <doi:10.1287/mnsc.1120.1616>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
