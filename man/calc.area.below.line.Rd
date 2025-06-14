@@ -21,11 +21,3 @@ It takes four parameters as the coordinates of two points at the beginning
 and end of a straight line, and calculates the area exactly below the line
 (between the line and the x-axis).
 }
-\examples{
-x1 = 2
-y1 = 2
-x2 = 4
-y2 = 5
-# calc.area.below.line(x1, x2, y1, y2)
-
-}
