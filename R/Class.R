@@ -117,10 +117,6 @@ createStochasticDominance = function(outcome1, outcome2, prob1, prob2){
 #' @param outcome Numeric vector, indicating the outcome values.
 #' @param cdf Numeric vector, indicating the cumulative probabilities.
 #' @returns Numeric vector, indicating the SSD values.
-#' @examples
-#' outcome = c(1,4,7)
-#' cdf = c(1/3,2/3,1)
-#' # ssd.calc(outcome, cdf)
 #'
 ssd.calc = function(outcome, cdf){
 
