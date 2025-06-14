@@ -21,13 +21,3 @@ It determines if two lines have intersection point or not. The start and
 end points of both lines have equal first coordinate value (the one
 corresponds to the x-axis).
 }
-\examples{
-x1 = 1
-x2 = 5
-y11 = 1
-y12 = 6
-y21 = 3
-y22 = 4
-# has.intersection(x1, x2, y11, y12, y21, y22)
-
-}
