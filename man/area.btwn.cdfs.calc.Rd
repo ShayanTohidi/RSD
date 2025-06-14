@@ -16,11 +16,3 @@ A numeric vector, including the area between the segments of CDFs.
 It calculates the area between the CDFs of two prospects divided by the CDFs
 and outcomes segments.
 }
-\examples{
-sd = createStochasticDominance(outcome1 = c(1,4,7),
-                               outcome2 = c(2,3,5),
-                               prob1 = c(1/3,1/3,1/3),
-                               prob2 = c(1/6,1/6,2/3))
-# area.btwn.cdfs.calc(sd)
-
-}
