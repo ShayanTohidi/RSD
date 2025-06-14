@@ -23,12 +23,6 @@
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including all the calculation details.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # assd.ll.test(sd)
 #'
 assd.ll.test = function(sd.obj){
 
@@ -72,12 +66,6 @@ assd.ll.test = function(sd.obj){
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including three elements corresponding to the positive and
 #' negative areas, respectively, and the area vector at the end.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # pos.neg.area.assd.ll(sd)
 #'
 pos.neg.area.assd.ll = function(sd.obj){
 
