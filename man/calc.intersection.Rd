@@ -23,16 +23,6 @@ intersection point of them.
 \details{
 Having intersection point has been checked before.
 }
-\examples{
-x1 = 1
-x2 = 5
-y11 = 1
-y12 = 6
-y21 = 3
-y22 = 4
-# calc.intersection(x1, x2, y11, y12, y21, y22)
-
-}
 \seealso{
 [has.intersect()]
 }
