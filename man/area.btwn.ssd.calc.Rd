@@ -15,14 +15,6 @@ Numeric vector, including area differences in every segments.
 \description{
 For every segments, the area between SSD functions will be computed.
 }
-\examples{
-sd = createStochasticDominance(outcome1 = c(1,4,7),
-                               outcome2 = c(2,3,5),
-                               prob1 = c(1/3,1/3,1/3),
-                               prob2 = c(1/6,1/6,2/3))
-# area.btwn.ssd.calc(sd)
-
-}
 \seealso{
 [modif.outcome.ssd.calc(), area.below.ssd.calc()] for more details.
 }
