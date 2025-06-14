@@ -18,14 +18,6 @@ It calculates the positive and negative areas between CDFs. The positive is
 where both CDF and SSD of the first prospect is larger, and vice versa for
 the negative case.
 }
-\examples{
-sd = createStochasticDominance(outcome1 = c(1,4,7),
-                               outcome2 = c(2,3,5),
-                               prob1 = c(1/3,1/3,1/3),
-                               prob2 = c(1/6,1/6,2/3))
-# pos.neg.area.assd.ll(sd)
-
-}
 \seealso{
 [modif.outcome.ssd.calc()] for more details.
 }
