@@ -31,14 +31,6 @@ amount of area where the `area` vector is positive, meaning the `cdf1` is
 larger than `cdf2` and `ssd1` is larger than `ssd2`. `negative.area` is like
 `positive.area` for negative values.
 }
-\examples{
-sd = createStochasticDominance(outcome1 = c(1,4,7),
-                               outcome2 = c(2,3,5),
-                               prob1 = c(1/3,1/3,1/3),
-                               prob2 = c(1/6,1/6,2/3))
-# assd.ll.test(sd)
-
-}
 \seealso{
 [expected.values(), pos.neg.area.assd.ll(), afsd.test()] for more
 details.
