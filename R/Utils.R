@@ -5,12 +5,6 @@
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including two double elements as the expected value of each
 #' prospect.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # expected.values(sd)
 #'
 expected.values = function(sd.obj){
 
@@ -31,10 +25,6 @@ expected.values = function(sd.obj){
 #'
 #' @param x,y Numeric vectors.
 #' @returns An integer, among 0, 1, 2.
-#' @examples
-#' x = c(1, 2, 3)
-#' y = c(2, 3, 4)
-#' # comparison(x, y)
 #'
 comparison = function(x, y){
 
@@ -58,12 +48,6 @@ comparison = function(x, y){
 #' @param y1,y2 Float values, indicating the second coordinates of start and end
 #' points, respectively.
 #' @returns A float.
-#' @examples
-#' x1 = 2
-#' y1 = 2
-#' x2 = 4
-#' y2 = 5
-#' # calc.area.below.line(x1, x2, y1, y2)
 #'
 calc.area.below.line = function(x1, x2, y1, y2){
 
@@ -83,14 +67,6 @@ calc.area.below.line = function(x1, x2, y1, y2){
 #' @param y11,y12 Float values, corresponding to the first line.
 #' @param y21,y22 Float values, corresponding to the second line.
 #' @returns A Boolean.
-#' @examples
-#' x1 = 1
-#' x2 = 5
-#' y11 = 1
-#' y12 = 6
-#' y21 = 3
-#' y22 = 4
-#' # has.intersection(x1, x2, y11, y12, y21, y22)
 #'
 has.intersection = function(x1, x2, y11, y12, y21, y22){
   if((y11<y21 & y12>y22) | (y11>y21 & y12<y22)){
@@ -113,14 +89,6 @@ has.intersection = function(x1, x2, y11, y12, y21, y22){
 #' @param y11,y12 Float values, corresponding to the first line.
 #' @param y21,y22 Float values, corresponding to the second line.
 #' @returns A list, including the coordinates of the intersection point.
-#' @examples
-#' x1 = 1
-#' x2 = 5
-#' y11 = 1
-#' y12 = 6
-#' y21 = 3
-#' y22 = 4
-#' # calc.intersection(x1, x2, y11, y12, y21, y22)
 #'
 calc.intersection = function(x1,x2,y11,y12,y21,y22){
 
@@ -142,12 +110,6 @@ calc.intersection = function(x1,x2,y11,y12,y21,y22){
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list of three elements.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # modif.outcome.ssd.calc(sd)
 #'
 modif.outcome.ssd.calc = function(sd.obj){
 
