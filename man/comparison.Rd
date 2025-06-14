@@ -22,9 +22,3 @@ The function returns the index of the winner, meaning 1 or 2, corresponding
 to parameters `x` and `y`, respectively. If no vector meets the condition, 0
 will be returned.
 }
-\examples{
-x = c(1, 2, 3)
-y = c(2, 3, 4)
-# comparison(x, y)
-
-}
