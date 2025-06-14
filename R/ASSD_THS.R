@@ -22,12 +22,6 @@
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns A list, including all the calculation details.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # assd.ths.test(sd)
 #'
 assd.ths.test = function(sd.obj){
 
@@ -68,12 +62,6 @@ assd.ths.test = function(sd.obj){
 #'
 #' @param sd.obj StochasticDominance object.
 #' @returns Numeric vector, including area differences in every segments.
-#' @examples
-#' sd = createStochasticDominance(outcome1 = c(1,4,7),
-#'                                outcome2 = c(2,3,5),
-#'                                prob1 = c(1/3,1/3,1/3),
-#'                                prob2 = c(1/6,1/6,2/3))
-#' # area.btwn.ssd.calc(sd)
 #'
 area.btwn.ssd.calc = function(sd.obj){
 
@@ -94,10 +82,6 @@ area.btwn.ssd.calc = function(sd.obj){
 #' @param outcome Numeric vector, including outcome values.
 #' @param ssd Numeric vector, including SSD values.
 #' @returns Numeric vector, including area below every segment of SSD function.
-#' @examples
-#' outcome = c(1,2,3,4,5,7)
-#' ssd = c(0, 0.33, 0.67, 1, 1.67, 3)
-#' # area.below.ssd.calc(outcome, ssd)
 #'
 area.below.ssd.calc = function(outcome, ssd){
 
