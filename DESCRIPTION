@@ -33,3 +33,5 @@ Imports:
         ggplot2,
         magrittr,
         methods
+Depends: 
+    R (>= 3.5)
