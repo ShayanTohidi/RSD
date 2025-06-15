@@ -27,6 +27,16 @@ pak::pkg_install("ShayanTohidi/RSD")
 
 `RSD` provides a function, `createStochasticDominance()` to create the object to be
 used in all other functions of this package. This function requires two discrete
-distributions.
+distributions. Here, the example data set `data_ex` will be used for creating
+the object:
 
-# Functionalities
+```r
+library(RSD)
+outcome1 = data_ex$yield[data_ex$gen == 'B73/PHM49']
+outcome2 = data_ex$yield[data_ex$gen == 'LH74/PHN82']
+pr = rep(1/29,29)
+sd.obj = createStochasticDominance(outcome1, outcome2, pr, pr)
+```
+
+The output of this code snippet, `sd.obj` contains all information for performing
+SD and ASD comparisons.
