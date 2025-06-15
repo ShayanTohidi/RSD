@@ -25,7 +25,7 @@ pak::pkg_install("ShayanTohidi/RSD")
 
 # Getting Started
 
-`RSD` provides a function, `createStochasticDominance()` to create the object to be
+`RSD` provides a function, `createStochasticDominance()` to create the SD object to be
 used in all other functions of this package. This function requires two discrete
 distributions. Here, the example data set `data_ex` will be used for creating
 the object:
