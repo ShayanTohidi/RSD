@@ -38,5 +38,8 @@ pr = rep(1/29,29)
 sd.obj = createStochasticDominance(outcome1, outcome2, pr, pr)
 ```
 
+Using this code, we can compare the distributions of the performance (yield) of
+two cultivars.
 The output of this code snippet, `sd.obj` contains all information for performing
-SD and ASD comparisons.
+SD and ASD comparisons. This is the main argument in the other functions of this
+package.
