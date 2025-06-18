@@ -10,7 +10,7 @@ more details, given two probability mass functions (PMF), this package helps wit
 
 # Installation
 
-Install the released version of `RSD` from [CRAN]() by:
+Install the released version of `RSD` from [CRAN](https://cran.r-project.org/web/packages/RSD/index.html) by:
 
 ```r
 install.packages("RSD")
