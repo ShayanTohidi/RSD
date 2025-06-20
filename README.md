@@ -10,13 +10,13 @@ more details, given two probability mass functions (PMF), this package helps wit
 
 # Installation
 
-Install the released version of `RSD` from [CRAN](https://cran.r-project.org/web/packages/RSD/index.html) by:
+Install the released version of `RSD` from [CRAN](https://doi.org/10.32614/CRAN.package.RSD) by:
 
 ```r
 install.packages("RSD")
 ```
 
-Or from [GitHub](https://github.com/ShayanTohidi/RSD.git) by:
+Or from [GitHub](https://github.com/ShayanTohidi/RSD) by:
 
 ```r
 install.packages("pak")
