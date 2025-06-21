@@ -1,3 +1,9 @@
 # RSD 0.2.0
 
-* Added a `NEWS.md` file to track changes to the package.
+## New Features
+
+- An example real data set, `data_ex`, is added to the package.
+
+## Changes
+
+## Bug Fixes
