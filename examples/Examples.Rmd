@@ -1,14 +1,19 @@
 ---
 title: "Examples"
 author: "Shayan Tohidi"
-date: "2025-06-18"
-output: html_document
+date: "2025-06-21"
+output: pdf_document
+# output: html_document
 bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(RSD)
+library(dplyr)
+library(tidyr)
+library(tinytex)
+# tinytex::install_tinytex()
 ```
 
 # Introduction
@@ -163,8 +168,95 @@ Here, the `area` is calculated according to the area between SSDs. The `total.ar
 
 # Real Examples
 
-There exists a data set in this package, called `data_ex`. It is a real data set extracted from [@g2f2018]. 
+There exists a data set in this package, called `data_ex`. It is a real data set extracted from [@g2f2018]. This data set can be used in multi-environmental
+analysis in plant breeding, and includes the yield of 13 unique cultivars (genotypes) planted in all 29 environments. It is a complete set, meaning all cultivars are planted
+in all environments.
+
+```{r}
+str(data_ex)
+```
+
+Using this data set, we will check a scenario where there is no dominance by FSD,
+but SSD and AFSD can determine the dominated distribution.
+
+```{r}
+gen1 = 'B73/PHM49'
+yield1 = data_ex$yield[data_ex$gen == gen1]
+pr1 = rep(1/length(yield1), length(yield1))
+
+gen2 = 'LH74/PHN82'
+yield2 = data_ex$yield[data_ex$gen == gen2]
+pr2 = rep(1/length(yield2), length(yield2))
+
+sd = createStochasticDominance(yield1, yield2, pr1, pr2)
+```
+
+Using the following functions, it can be seen that neither distributions dominates the other by FSD, because they intersect. However, it is obvious that most of the time, the first distribution is below. So, because of a few extreme utilities, the FSD rule has been violated.
+
+```{r}
+fsd.test(sd)
+fsd.plot(sd, c(gen1, gen2))
+```
+
+When the FSD rule does not determine, we can use SSD or AFSD. The SSD rule considers all risk-averse utilities, while AFSD considers most utilities with different risk attitudes. Below, the results from SSD rule show that the first distribution (corresponds to 'B73/PHM49' cultivar) dominates.
+
+```{r}
+ssd.test(sd)
+ssd.plot(sd, c(gen1, gen2))
+```
+
+AFSD rule also shows the same result, that the first distribution dominates with a negligible violation or $\epsilon$.
+
+```{r}
+afsd.test(sd)
+```
+
+This example shows the importance of ASD as a powerful complementary to the classical SD methods, because in real comparison and ranking problems, the SD methods often fail to determine the dominated distributions.
 
 # Pipeline
+
+Until now, we have been using our package to perform comparison between only two distributions. Here we are going to present a way for ranking all distributions in a real-world data set. The data set is the same as the previous section.
+
+Below, we define a function, `sd.test`, that creates a pipeline for comparing two distributions. For simplicity, we only put the winner indexes as the output parameters. All the other output parameters of the inner functions can be used as well.
+
+```{r}
+sd.test = function(cultivar1, cultivar2, df, prob1, prob2){
+  
+  outcome1 = df$yield[df$gen == cultivar1]
+  outcome2 = df$yield[df$gen == cultivar2]
+  
+  sd.obj = createStochasticDominance(outcome1, outcome2, prob1, prob2)
+  fsd = fsd.test(sd.obj)
+  ssd = ssd.test(sd.obj)
+  afsd = afsd.test(sd.obj)
+  assd.ll = assd.test(sd.obj, 'll')
+  assd.ths = assd.test(sd.obj, 'ths')
+  return(list(fsd = fsd, ssd = ssd, afsd = afsd$winner,
+              assd.ll = assd.ll$winner, assd.ths = assd.ths$winner))
+}
+```
+
+The following lines are used to create a raw data set containing all unique pairs of cultivars. Then, a vectorized implementation is used to apply the `sd.test` function on all pairs in that data set to get the results.
+
+```{r}
+m = length(unique(data_ex$env))
+pr = rep(1/m, m)
+cultivars = unique(data_ex$gen)
+n = length(cultivars)
+data = data.frame(cultivars1 = cultivars[rep(1:(n-1), (n-1):1)],
+                  cultivars2 = cultivars[unlist(sapply(seq(2,n),
+                                                       function(x) seq(x,n)))])
+
+result = data %>%
+  group_by(cultivars1, cultivars2) %>% 
+  mutate(res = list(sd.test(cultivars1, cultivars2, data_ex,pr, pr))) %>% 
+  unnest_wider(res)
+
+result
+```
+
+# Conclusion
+
+The `RSD` package can be used in research and business to compare and rank distributions using stochastic dominance (SD) and almost stochastic dominance (ASD). This package uses exact methods to implement the SD and ASD rules without any estimation because we focus on using discrete distributions instead of continuous ones that have to be sampled. So, the results is reliable. In addition, the algorithms are developed in a way to use vectorized implementation, and have $\mathcal{O}(n)$ in the worst case scenarios. Thus, the functions are efficient and effective even in large data sets.
 
 # References
