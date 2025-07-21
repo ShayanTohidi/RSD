@@ -11,6 +11,21 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 
 #### perform sd and asd tests on all pairs ####
 
+sd.test.all = function(paired.dists, include.details){
+
+  result = paired.dists %>%
+    rowwise() %>%
+    mutate(res = list(sd.test(data1, data2))) %>%
+    unnest_wider(res)
+
+  if (!include.details) {
+    result = result %>%
+      select(-c(data1, data2))
+  }
+
+  return(result)
+}
+
 sd.test = function(data1, data2){
 
   sd.obj = createStochasticDominance(data1$outcome, data2$outcome,
