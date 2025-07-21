@@ -9,6 +9,26 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   return(data)
 }
 
+#### perform sd and asd tests on all pairs ####
+
+sd.test = function(data1, data2){
+
+  sd.obj = createStochasticDominance(data1$outcome, data2$outcome,
+                                     data1$probability, data2$probability)
+  fsd = fsd.test(sd.obj)
+  ssd = ssd.test(sd.obj)
+  afsd = afsd.test(sd.obj)
+  assd.ll = assd.test(sd.obj, 'll')
+  assd.ths = assd.test(sd.obj, 'ths')
+
+  return(list(fsd = fsd, ssd = ssd,
+              afsd = afsd$winner, afsd.eps = afsd$epsilon,
+              assd.ll = assd.ll$winner, assd.ll.eps = assd.ll$epsilon,
+              assd.ths = assd.ths$winner, assd.ths.eps = assd.ths$epsilon))
+}
+
+#### create distribution pairs ####
+
 create.paired.distributions = function(variable, probability, outcome){
 
   org.data = create.dataframe(variable, probability, outcome)
