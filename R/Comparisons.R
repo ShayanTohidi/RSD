@@ -15,19 +15,21 @@ screen = function(data, sd.type, asd.type, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
 
-  sd.discards = data %>%
+  sd.inefficient = data %>%
     filter({{sd.type}} == 1) %>%
     distinct(variable2) %>%
     pull(variable2)
+  sd.efficient = setdiff(variables, sd.inefficient)
 
   asd.eps.name = paste0(as_label(enquo(asd.type)), '.eps')
-  asd.discards = data %>%
+  asd.inefficient = data %>%
     filter({{asd.type}} == 1 & !!asd.eps.name <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
+  asd.efficient = setdiff(variables, asd.inefficient)
 
-  return(list(sd.discards = sd.discards, asd.discards = asd.discards,
-              advanced = setdiff(variables, asd.discards)))
+  return(list(sd.inefficient = sd.inefficient, sd.efficient = sd.efficient,
+              asd.inefficient = asd.inefficient, asd.efficient = asd.efficient))
 
 }
 
