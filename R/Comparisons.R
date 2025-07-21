@@ -25,3 +25,16 @@ create.dataframe = function(variable, probability, outcome){
                     outcome = outcome)
   return(data)
 }
+
+sort.variables = function(variable, outcome){
+
+  df = data.frame(variable = variable, outcome = outcome)
+
+  variables = df %>%
+    group_by(variable) %>%
+    summarise(avg = mean(outcome)) %>%
+    arrange(desc(avg)) %>%
+    pull(variable)
+
+  return(variables)
+}
