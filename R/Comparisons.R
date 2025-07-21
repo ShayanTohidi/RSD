@@ -5,11 +5,27 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 
   data = sd.test.all(paired.dists, include.details)
 
+  fsd = screen(data, fsd, afsd, afsd.epsilon)
+  # fsd.sets = list(fsd.efficient = fsd$sd.efficient,
+  #                 fsd.inefficient = fsd$sd.inefficient,
+  #                 afsd.efficient = fsd$asd.efficient,
+  #                 afsd.inefficient = fsd$asd.inefficient)
+
 
   return(data)
 }
 
 #### screen: find efficient and inefficient sets ####
+
+# fsd.screen = function(data, sd.type, asd.type, epsilon){
+#
+#   fsd = screen(data, sd.type, asd.type, epsilon)
+#
+#   return(list(fsd.efficient = fsd$sd.efficient,
+#               fsd.inefficient = fsd$sd.inefficient,
+#               afsd.efficient = fsd$asd.efficient,
+#               afsd.inefficient = fsd$asd.inefficient))
+# }
 
 screen = function(data, sd.type, asd.type, epsilon){
 
@@ -28,8 +44,13 @@ screen = function(data, sd.type, asd.type, epsilon){
     pull(variable2)
   asd.efficient = setdiff(variables, asd.inefficient)
 
-  return(list(sd.inefficient = sd.inefficient, sd.efficient = sd.efficient,
-              asd.inefficient = asd.inefficient, asd.efficient = asd.efficient))
+  sd.ineff.name = paste0(as_label(enquo(sd.type)), '.inefficient')
+  sd.eff.name = paste0(as_label(enquo(sd.type)), '.efficient')
+  asd.ineff.name = paste0(as_label(enquo(asd.type)), '.inefficient')
+  asd.eff.name = paste0(as_label(enquo(asd.type)), '.efficient')
+
+  return(list(!!sd.ineff.name = sd.inefficient, !!sd.eff.name = sd.efficient,
+              !!asd.ineff.name = asd.inefficient, !!asd.eff.name = asd.efficient))
 
 }
 
