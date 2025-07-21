@@ -48,3 +48,14 @@ pair.variables = function(variables){
 
   return(data)
 }
+
+pair.distributions = function(org.data, paired.vars){
+
+  data = paired.vars %>%
+    nest_join(org.data, by = c('variable1' = 'variable')) %>%
+    rename(data1 = org.data) %>%
+    nest_join(org.data, by = c('variable2' = 'variable')) %>%
+    rename(data2 = org.data)
+
+  return(data)
+}
