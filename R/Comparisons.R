@@ -49,8 +49,8 @@ screen = function(data, sd.type, asd.type, epsilon){
   asd.ineff.name = paste0(as_label(enquo(asd.type)), '.inefficient')
   asd.eff.name = paste0(as_label(enquo(asd.type)), '.efficient')
 
-  return(list(!!sd.ineff.name = sd.inefficient, !!sd.eff.name = sd.efficient,
-              !!asd.ineff.name = asd.inefficient, !!asd.eff.name = asd.efficient))
+  return(list(!!sd.ineff.name := sd.inefficient, !!sd.eff.name := sd.efficient,
+              !!asd.ineff.name := asd.inefficient, !!asd.eff.name := asd.efficient))
 
 }
 
