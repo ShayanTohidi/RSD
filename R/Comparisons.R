@@ -38,3 +38,13 @@ sort.variables = function(variable, outcome){
 
   return(variables)
 }
+
+pair.variables = function(variables){
+
+  n = length(variables)
+  data = data.frame(variable1 = variables[rep(1:(n-1), (n-1):1)],
+                    variable2 = variables[unlist(sapply(seq(2,n),
+                                                        function(x) seq(x,n)))])
+
+  return(data)
+}
