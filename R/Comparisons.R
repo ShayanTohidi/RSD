@@ -9,6 +9,18 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   return(data)
 }
 
+create.paired.distributions = function(variable, probability, outcome){
+
+  org.data = create.dataframe(variable, probability, outcome)
+
+  sorted.vars = sort.variables(variable, outcome)
+  paired.vars = pair.variables(sorted.vars)
+
+  paired.dists = pair.distributions(org.data, paired.vars)
+
+  return(paired.dists)
+}
+
 create.dataframe = function(variable, probability, outcome){
 
   if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome))){
