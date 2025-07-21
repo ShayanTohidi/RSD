@@ -9,6 +9,28 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   return(data)
 }
 
+#### screen: find efficient and inefficient sets ####
+
+screen = function(data, sd.type, asd.type, epsilon){
+
+  variables = unique(append(data$variable1, data$variable2))
+
+  sd.discards = data %>%
+    filter({{sd.type}} == 1) %>%
+    distinct(variable2) %>%
+    pull(variable2)
+
+  asd.eps.name = paste0(as_label(enquo(asd.type)), '.eps')
+  asd.discards = data %>%
+    filter({{asd.type}} == 1 & !!asd.eps.name <= epsilon) %>%
+    distinct(variable2) %>%
+    pull(variable2)
+
+  return(list(sd.discards = sd.discards, asd.discards = asd.discards,
+              advanced = setdiff(variables, asd.discards)))
+
+}
+
 #### perform sd and asd tests on all pairs ####
 
 sd.test.all = function(paired.dists, include.details){
