@@ -12,7 +12,7 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   #                 afsd.inefficient = fsd$asd.inefficient)
 
 
-  return(data)
+  return(list(data = data, fsd.sets = fsd))
 }
 
 #### screen: find efficient and inefficient sets ####
