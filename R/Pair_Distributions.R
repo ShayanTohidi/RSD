@@ -27,6 +27,15 @@ create.dataframe = function(variable, probability, outcome){
   return(data)
 }
 
+#' Sorting all variables based on their outcomes
+#'
+#' @importFrom dplyr group_by summarise arrange pull desc
+#' @importFrom magrittr "%>%"
+#'
+#' @param variable A character vector, includes variable names.
+#' @param outcome A numeric vector, includes outcome values.
+#' @returns A character vector, includes all variable names sorted by their
+#' outcomes.
 sort.variables = function(variable, outcome){
 
   df = data.frame(variable = variable, outcome = outcome)
