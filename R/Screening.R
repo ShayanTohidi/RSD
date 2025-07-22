@@ -17,6 +17,24 @@ screen = function(data, test, epsilon.threshold){
   return(unlist(result, recursive = F))
 }
 
+#' Create the inefficient set by an SD rule
+#'
+#' It uses the test result to create the inefficient set.
+#'
+#' @details
+#' The inefficient set includes all variable names that are dominated by at
+#' least one other variable. The domination defines as the test result of the
+#' corresponding `test` column.
+#'
+#' @importFrom dplyr filter distinct pull sym
+#' @importFrom magrittr "%>%"
+#'
+#' @param data A data frame, including variable pairs, distributions, and
+#' results of the tests.
+#' @param test A string that indicates the name of the test.
+#' @returns A character vector as the inefficient set of variables based on the
+#' `test` result.
+#'
 sd.screen = function(data, test){
 
   sd.inefficient = data %>%
