@@ -5,8 +5,7 @@ screen = function(data, test, epsilon.threshold){
   if (test == 'fsd' | test == 'ssd') {
     inefficient.set = sd.screen(data, test)
   } else {
-    eps.name = paste0(test, '.eps')
-    inefficient.set = asd.screen(data, test, epsilon.threshold, eps.name)
+    inefficient.set = asd.screen(data, test, epsilon.threshold)
   }
 
   efficient.set = setdiff(variables, inefficient.set)
