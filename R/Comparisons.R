@@ -17,14 +17,13 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 sd.screen = function(data, test){
 
   variables = unique(append(data$variable1, data$variable2))
+  test.name = as_label(enquo(test))
 
   sd.inefficient = data %>%
     filter({{test}} == 1) %>%
     distinct(variable2) %>%
     pull(variable2)
   sd.efficient = setdiff(variables, sd.inefficient)
-
-  test.name = as_label(enquo(test))
 
   result = list(
     setNames(list(sd.inefficient), paste0(test.name, '.inefficient')),
@@ -34,31 +33,21 @@ sd.screen = function(data, test){
   return(unlist(result, recursive = F))
 }
 
-screen = function(data, sd.type, asd.type, epsilon){
+asd.screen = function(data, test, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
+  test.name = as_label(enquo(test))
+  asd.eps.name = paste0(test.name, '.eps')
 
-  sd.inefficient = data %>%
-    filter({{sd.type}} == 1) %>%
-    distinct(variable2) %>%
-    pull(variable2)
-  sd.efficient = setdiff(variables, sd.inefficient)
-
-  asd.eps.name = paste0(as_label(enquo(asd.type)), '.eps')
   asd.inefficient = data %>%
-    filter({{asd.type}} == 1 & !!sym(asd.eps.name) <= epsilon) %>%
+    filter({{test}} == 1 & !!sym(asd.eps.name) <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
   asd.efficient = setdiff(variables, asd.inefficient)
 
-  sd.name = as_label(enquo(sd.type))
-  asd.name = as_label(enquo(asd.type))
-
   result = list(
-    setNames(list(sd.inefficient), paste0(sd.name, '.inefficient')),
-    setNames(list(sd.efficient), paste0(sd.name, '.efficient')),
-    setNames(list(asd.inefficient), paste0(asd.name, '.inefficient')),
-    setNames(list(asd.efficient), paste0(asd.name, '.efficient'))
+    setNames(list(asd.inefficient), paste0(test.name, '.inefficient')),
+    setNames(list(asd.efficient), paste0(test.name, '.efficient'))
   )
 
   return(unlist(result, recursive = F))
