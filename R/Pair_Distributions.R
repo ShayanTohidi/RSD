@@ -40,6 +40,18 @@ sort.variables = function(variable, outcome){
   return(variables)
 }
 
+#' Paring all the variables
+#'
+#' It uses a vector of variables and creates unique unordered pairs.
+#'
+#' @details
+#' These pairs are unique unordered pairs, meaning the order of variables does
+#' not matter. So if we have pair {x,y} we do not create another pair {y,x},
+#' because they are technically the same.
+#'
+#' @param variables A character vector, including the variable names.
+#' @returns A data frame, that includes two columns; every row represents a pair
+#' of variables.
 pair.variables = function(variables){
 
   n = length(variables)
