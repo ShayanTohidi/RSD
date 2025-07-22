@@ -38,11 +38,6 @@ create.dataframe = function(variable, probability, outcome){
 
 #' Sorting all variables based on their outcomes
 #'
-#' @details
-#' If `variable` is not a character vector, it will raise an error. If `outcome`
-#' is not a numeric vector, it will raise an error. The length of `variable` and
-#' `outcome` must be the same, otherwise it will raise an error.
-#'
 #' @importFrom dplyr group_by summarise arrange pull desc
 #' @importFrom magrittr "%>%"
 #'
