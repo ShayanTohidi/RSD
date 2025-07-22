@@ -1,3 +1,7 @@
+#' If the type of each input parameter is incorrect, it will raise an error.
+#'
+#' The length of the input parameters must be equal, otherwise it will raise an
+#' error.
 compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 0.1,
                        assd.ll.epsilon.threshold = 0.1,
                        assd.ths.epsilon.threshold = 0.1, include.details = TRUE){
