@@ -6,26 +6,9 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   data = sd.test.all(paired.dists, include.details)
 
   fsd = screen(data, fsd, afsd, afsd.epsilon)
-  # fsd.sets = list(fsd.efficient = fsd$sd.efficient,
-  #                 fsd.inefficient = fsd$sd.inefficient,
-  #                 afsd.efficient = fsd$asd.efficient,
-  #                 afsd.inefficient = fsd$asd.inefficient)
-
 
   return(list(data = data, fsd.sets = fsd))
 }
-
-#### screen: find efficient and inefficient sets ####
-
-# fsd.screen = function(data, sd.type, asd.type, epsilon){
-#
-#   fsd = screen(data, sd.type, asd.type, epsilon)
-#
-#   return(list(fsd.efficient = fsd$sd.efficient,
-#               fsd.inefficient = fsd$sd.inefficient,
-#               afsd.efficient = fsd$asd.efficient,
-#               afsd.inefficient = fsd$asd.inefficient))
-# }
 
 screen = function(data, sd.type, asd.type, epsilon){
 
@@ -39,19 +22,22 @@ screen = function(data, sd.type, asd.type, epsilon){
 
   asd.eps.name = paste0(as_label(enquo(asd.type)), '.eps')
   asd.inefficient = data %>%
-    filter({{asd.type}} == 1 & !!asd.eps.name <= epsilon) %>%
+    filter({{asd.type}} == 1 & !!sym(asd.eps.name) <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
   asd.efficient = setdiff(variables, asd.inefficient)
 
-  sd.ineff.name = paste0(as_label(enquo(sd.type)), '.inefficient')
-  sd.eff.name = paste0(as_label(enquo(sd.type)), '.efficient')
-  asd.ineff.name = paste0(as_label(enquo(asd.type)), '.inefficient')
-  asd.eff.name = paste0(as_label(enquo(asd.type)), '.efficient')
+  sd.name = as_label(enquo(sd.type))
+  asd.name = as_label(enquo(asd.type))
 
-  return(list(!!sd.ineff.name := sd.inefficient, !!sd.eff.name := sd.efficient,
-              !!asd.ineff.name := asd.inefficient, !!asd.eff.name := asd.efficient))
+  result = list(
+    setNames(list(sd.inefficient), paste0(sd.name, '.inefficient')),
+    setNames(list(sd.efficient), paste0(sd.name, '.efficient')),
+    setNames(list(asd.inefficient), paste0(asd.name, '.inefficient')),
+    setNames(list(asd.efficient), paste0(asd.name, '.efficient'))
+  )
 
+  return(unlist(result, recursive = F))
 }
 
 #### perform sd and asd tests on all pairs ####
