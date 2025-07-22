@@ -50,6 +50,20 @@ pair.variables = function(variables){
   return(data)
 }
 
+#' Paring all the distributions
+#'
+#' It uses paired variables and collects all the related information (probability
+#' and outcome) corresponding to each variable of every pairs.
+#'
+#' @importFrom dplyr nest_join rename
+#' @importFrom magrittr "%>%"
+#'
+#' @param org.data A data frame that includes all variables, probabilities, and
+#' outcomes.
+#' @param paired.vars A data frame that includes all unique pairs of variables.
+#' @returns A data frame that includes all unique pairs of variables with their
+#' corresponding distributions in the nested format.
+#'
 pair.distributions = function(org.data, paired.vars){
 
   data = paired.vars %>%
