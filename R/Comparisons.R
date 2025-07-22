@@ -14,6 +14,26 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 
 #### screen: build efficient and inefficient sets ####
 
+sd.screen = function(data, test){
+
+  variables = unique(append(data$variable1, data$variable2))
+
+  sd.inefficient = data %>%
+    filter({{test}} == 1) %>%
+    distinct(variable2) %>%
+    pull(variable2)
+  sd.efficient = setdiff(variables, sd.inefficient)
+
+  test.name = as_label(enquo(test))
+
+  result = list(
+    setNames(list(sd.inefficient), paste0(test.name, '.inefficient')),
+    setNames(list(sd.efficient), paste0(test.name, '.efficient'))
+    )
+
+  return(unlist(result, recursive = F))
+}
+
 screen = function(data, sd.type, asd.type, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
