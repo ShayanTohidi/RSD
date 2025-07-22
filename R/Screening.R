@@ -45,11 +45,11 @@ sd.screen = function(data, variables, test){
 #'
 #' @param data A data frame, including variable pairs, distributions, and
 #' results of the tests.
-#' @param variables A character vector, containing variable names.
 #' @param test A string that indicates the name of the test.
 #' @param epsilon A number.
 #' @param epsilon.name A string.
 #' @returns A character vector
+#'
 asd.screen = function(data, test, epsilon, epsilon.name){
 
   asd.inefficient = data %>%
