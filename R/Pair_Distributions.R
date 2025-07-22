@@ -62,6 +62,7 @@ sort.variables = function(variable, outcome){
 #' @param variables A character vector, including the variable names.
 #' @returns A data frame, that includes two columns; every row represents a pair
 #' of variables.
+#'
 pair.variables = function(variables){
 
   n = length(variables)
