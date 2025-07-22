@@ -14,6 +14,16 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 
 #### screen: build efficient and inefficient sets ####
 
+screen = function(data, test, epsilon, type){
+
+  variables = unique(append(data$variable1, data$variable2))
+  test.name = as_label(enquo(test))
+
+  if (type == 'sd') {
+    sd.screen(data, variables, test)
+  }
+}
+
 sd.screen = function(data, test){
 
   variables = unique(append(data$variable1, data$variable2))
