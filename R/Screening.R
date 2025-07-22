@@ -38,7 +38,9 @@ sd.screen = function(data, variables, test){
 #' The inefficient set includes all variable names that are dominated by at
 #' least one other variable. The domination defines as the test result where
 #' the corresponding epsilon is smaller than or equal to epsilon threshold
-#' (`epsilon`).
+#' (`epsilon`). If the epsilon is smaller than the threshold, it is assumed that
+#' by some relaxation the domination exists because a very small ratio of the
+#' decision-makers do not agree with this result.
 #'
 #' @importFrom dplyr filter distinct pull sym
 #' @importFrom magrittr "%>%"
