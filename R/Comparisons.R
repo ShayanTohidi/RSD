@@ -10,6 +10,8 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
   return(list(data = data, fsd.sets = fsd))
 }
 
+#### screen: build efficient and inefficient sets ####
+
 screen = function(data, sd.type, asd.type, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
