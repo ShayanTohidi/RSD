@@ -56,6 +56,8 @@ sd.screen = function(data, test){
 #'
 asd.screen = function(data, test, epsilon, epsilon.name){
 
+  epsilon.name = paste0(test, '.eps')
+
   asd.inefficient = data %>%
     filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon) %>%
     distinct(variable2) %>%
