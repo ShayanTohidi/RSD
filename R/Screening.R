@@ -35,7 +35,6 @@ asd.screen = function(data, variables, test, epsilon, epsilon.name){
     filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
-  asd.efficient = setdiff(variables, asd.inefficient)
 
-  return(list(inefficient = asd.inefficient, efficient = asd.efficient))
+  return(asd.inefficient)
 }
