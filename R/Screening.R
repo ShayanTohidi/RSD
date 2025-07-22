@@ -29,6 +29,27 @@ sd.screen = function(data, variables, test){
   return(sd.inefficient)
 }
 
+#' Create the inefficient set by an ASD rule
+#'
+#' It uses the test result, corresponding epsilon, and the epsilon threshold to
+#' create the inefficient set.
+#'
+#' @details
+#' The inefficient set includes all variable names that are dominated by at
+#' least one other variable. The domination defines as the test result where
+#' the corresponding epsilon is smaller than or equal to epsilon threshold
+#' (`epsilon`).
+#'
+#' @importFrom dplyr filter distinct pull sym
+#' @importFrom magrittr "%>%"
+#'
+#' @param data A data frame, including variable pairs, distributions, and
+#' results of the tests.
+#' @param variables A character vector, containing variable names.
+#' @param test A string that indicates the name of the test.
+#' @param epsilon A number.
+#' @param epsilon.name A string.
+#' @returns A character vector
 asd.screen = function(data, variables, test, epsilon, epsilon.name){
 
   asd.inefficient = data %>%
