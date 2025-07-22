@@ -22,7 +22,8 @@ screen = function(data, test, epsilon, type){
   if (type == 'sd') {
     sets = sd.screen(data, variables, test)
   } else if (type == 'asd') {
-    sets = asd.screen(data, variables, test, epsilon)
+    eps.name = paste0(test.name, '.eps')
+    sets = asd.screen(data, variables, test, epsilon, eps.name)
   }
 
   result = list(
@@ -33,10 +34,7 @@ screen = function(data, test, epsilon, type){
   return(unlist(result, recursive = F))
 }
 
-sd.screen = function(data, test){
-
-  variables = unique(append(data$variable1, data$variable2))
-  test.name = as_label(enquo(test))
+sd.screen = function(data, variables, test){
 
   sd.inefficient = data %>%
     filter({{test}} == 1) %>%
@@ -44,32 +42,18 @@ sd.screen = function(data, test){
     pull(variable2)
   sd.efficient = setdiff(variables, sd.inefficient)
 
-  result = list(
-    setNames(list(sd.inefficient), paste0(test.name, '.inefficient')),
-    setNames(list(sd.efficient), paste0(test.name, '.efficient'))
-    )
-
-  return(unlist(result, recursive = F))
+  return(list(inefficient = sd.inefficient, efficient = sd.efficient))
 }
 
-asd.screen = function(data, test, epsilon){
-
-  variables = unique(append(data$variable1, data$variable2))
-  test.name = as_label(enquo(test))
-  asd.eps.name = paste0(test.name, '.eps')
+asd.screen = function(data, variables, test, epsilon, epsilon.name){
 
   asd.inefficient = data %>%
-    filter({{test}} == 1 & !!sym(asd.eps.name) <= epsilon) %>%
+    filter({{test}} == 1 & !!sym(epsilon.name) <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
   asd.efficient = setdiff(variables, asd.inefficient)
 
-  result = list(
-    setNames(list(asd.inefficient), paste0(test.name, '.inefficient')),
-    setNames(list(asd.efficient), paste0(test.name, '.efficient'))
-  )
-
-  return(unlist(result, recursive = F))
+  return(list(inefficient = asd.inefficient, efficient = asd.efficient))
 }
 
 #### perform sd and asd tests on all pairs ####
