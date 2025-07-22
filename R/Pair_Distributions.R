@@ -1,3 +1,32 @@
+#' Creating paired distributions
+#'
+#' with the input parameters and four other functions, it will create a data frame
+#' that includes all pairs of variables and their corresponding probability and
+#' outcome values.
+#'
+#' @details
+#' If the type of each input parameter is incorrect, it will raise an error.
+#'
+#' The length of the input parameters must be equal, otherwise it will raise an
+#' error.
+#'
+#' Here, we first sort variables based on their outcome in ascending order, and
+#' then create unordered unique pairs. So, the first element (variable) of any
+#' pair has larger mean outcome than the second element.
+#'
+#' The output has four columns. The first two represent the two elements of each
+#' pair. The last two are the corresponding probability and outcome for the
+#' elements, respectively. These are in nested format, meaning each cell of the
+#' last two columns includes a data frame with two columns: probability and
+#' outcome.
+#'
+#' @seealso [create.dataframe(), sort.variables(), pair.variables(), pair.distributions()]
+#'
+#' @param variable A character vector.
+#' @param probability A numeric vector.
+#' @param outcome A numeric vector.
+#' @returns A data frame with four columns.
+#'
 create.paired.distributions = function(variable, probability, outcome){
 
   if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome))){
