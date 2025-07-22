@@ -19,7 +19,7 @@ screen = function(data, test, epsilon){
   return(unlist(result, recursive = F))
 }
 
-sd.screen = function(data, variables, test){
+sd.screen = function(data, test){
 
   sd.inefficient = data %>%
     filter(!!sym(test) == 1) %>%
