@@ -53,18 +53,6 @@ create.dataframe = function(variable, probability, outcome){
 #'
 sort.variables = function(variable, outcome){
 
-  if (!is.character(variable)) {
-    stop("Error: 'variable' must be a character vector.")
-  }
-
-  if (!is.numeric(outcome)) {
-    stop("Error: 'outcome' must be a numeric vector.")
-  }
-
-  if (length(variable) != length(outcome)) {
-    stop("Error: 'variable' and 'outcome' must have equal lengths.")
-  }
-
   df = data.frame(variable = variable, outcome = outcome)
 
   variables = df %>%
