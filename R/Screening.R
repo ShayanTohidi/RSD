@@ -54,7 +54,7 @@ sd.screen = function(data, test){
 #' values.
 #' @returns A character vector.
 #'
-asd.screen = function(data, test, epsilon, epsilon.name){
+asd.screen = function(data, test, epsilon){
 
   epsilon.name = paste0(test, '.eps')
 
