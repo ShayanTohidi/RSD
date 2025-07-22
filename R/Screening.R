@@ -1,3 +1,17 @@
+#' A wrapper for computing inefficient and efficient sets
+#'
+#' @seealso [sd.screen(), asd.screen()]
+#'
+#' @importFrom dplyr setdiff
+#' @importFrom stats setNames
+#'
+#' @param data A data frame, including variable pairs, distributions, and
+#' results of the tests.
+#' @param test A string that indicates the name of the test.
+#' @param epsilon.threshold A number that indicates the threshold for considering
+#' the result to be valid or not for ASD tests.
+#' @returns A list of two elements, efficient and inefficient sets.
+#'
 screen = function(data, test, epsilon.threshold){
 
   if (test == 'fsd' | test == 'ssd') {
