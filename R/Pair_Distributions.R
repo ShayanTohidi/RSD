@@ -19,6 +19,13 @@ create.paired.distributions = function(variable, probability, outcome){
   return(paired.dists)
 }
 
+#' create a data frame from input parameters
+#'
+#' @param variable A character vector.
+#' @param probability A numeric vector.
+#' @param outcome A numeric vector.
+#' @returns A data frame with three columns.
+#'
 create.dataframe = function(variable, probability, outcome){
 
   data = data.frame(variable = variable,
