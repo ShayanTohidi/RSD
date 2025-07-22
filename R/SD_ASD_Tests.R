@@ -1,3 +1,23 @@
+#' Performing SD and ASD tests on distribution pairs
+#'
+#' @details
+#' `paired.dists` is a data frame including the distributions of all pairs.
+#' `include.details` is a Boolean value. If it is TRUE, the distributions are
+#' included in the output, otherwise they will be discarded.
+#'
+#' The output includes the SD and ASD test results, which are the index of the
+#' dominant variable and the epsilon of the ASD tests.
+#'
+#' @seealso [sd.test()]
+#'
+#' @importFrom dplyr rowwise mutate select
+#' @importFrom tidyr unnest_wider
+#' @importFrom magrittr "%>%"
+#'
+#' @param paired.dists A data frame that includes paired distributions.
+#' @param include.details A Boolean.
+#' @returns A data frame that includes the result of tests for each pair.
+#'
 sd.test.all = function(paired.dists, include.details){
 
   result = paired.dists %>%
