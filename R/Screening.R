@@ -48,9 +48,11 @@ sd.screen = function(data, test){
 #' @param data A data frame, including variable pairs, distributions, and
 #' results of the tests.
 #' @param test A string that indicates the name of the test.
-#' @param epsilon A number.
-#' @param epsilon.name A string.
-#' @returns A character vector
+#' @param epsilon A number that indicates the threshold for considering the
+#' result valid or not.
+#' @param epsilon.name A string that indicates the column containing the epsilon
+#' values.
+#' @returns A character vector.
 #'
 asd.screen = function(data, test, epsilon, epsilon.name){
 
