@@ -6,29 +6,34 @@ compare.all = function(variable, probability, outcome, afsd.epsilon = 0.1,
 
   data = sd.test.all(paired.dists, include.details)
 
-  fsd = screen(data, fsd, afsd, afsd.epsilon)
+  fsd = screen(data, 'fsd', 0)
+  afsd = screen(data, 'afsd', afsd.epsilon)
+  ssd = screen(data, 'ssd', 0)
+  assd.ll = screen(data, 'assd.ll', assd.ll.epsilon)
+  assd.ths = screen(data, 'assd.ths', assd.ths.epsilon)
 
 
-  return(list(data = data, fsd.sets = fsd))
+  return(list(data = data, fsd.sets = fsd, afsd.sets = afsd,
+              ssd.sets = ssd, assd.ll.sets = assd.ll, assd.ths.sets = assd.ths))
 }
 
 #### screen: build efficient and inefficient sets ####
 
-screen = function(data, test, epsilon, type){
+screen = function(data, test, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
-  test.name = as_label(enquo(test))
+  # test.name = as_label(enquo(test))
 
-  if (type == 'sd') {
+  if (test == 'fsd' | test == 'ssd') {
     sets = sd.screen(data, variables, test)
-  } else if (type == 'asd') {
-    eps.name = paste0(test.name, '.eps')
+  } else {
+    eps.name = paste0(test, '.eps')
     sets = asd.screen(data, variables, test, epsilon, eps.name)
   }
 
   result = list(
-    setNames(list(sets$inefficient), paste0(test.name, '.inefficient')),
-    setNames(list(sets$efficient), paste0(test.name, '.efficient'))
+    setNames(list(sets$inefficient), paste0(test, '.inefficient')),
+    setNames(list(sets$efficient), paste0(test, '.efficient'))
   )
 
   return(unlist(result, recursive = F))
@@ -37,7 +42,7 @@ screen = function(data, test, epsilon, type){
 sd.screen = function(data, variables, test){
 
   sd.inefficient = data %>%
-    filter({{test}} == 1) %>%
+    filter(!!sym(test) == 1) %>%
     distinct(variable2) %>%
     pull(variable2)
   sd.efficient = setdiff(variables, sd.inefficient)
@@ -48,7 +53,7 @@ sd.screen = function(data, variables, test){
 asd.screen = function(data, variables, test, epsilon, epsilon.name){
 
   asd.inefficient = data %>%
-    filter({{test}} == 1 & !!sym(epsilon.name) <= epsilon) %>%
+    filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon) %>%
     distinct(variable2) %>%
     pull(variable2)
   asd.efficient = setdiff(variables, asd.inefficient)
