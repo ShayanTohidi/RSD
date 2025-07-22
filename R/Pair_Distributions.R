@@ -29,15 +29,6 @@
 #'
 create.paired.distributions = function(variable, probability, outcome){
 
-  if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome))){
-    stop("Expected types: variable (character), probability and outcome: (numeric)")
-  }
-
-  len = length(variable)
-  if (length(probability) != len | length(outcome) != len) {
-    stop("All input vectors must have the same length.")
-  }
-
   sorted.vars = sort.variables(variable, outcome)
   paired.vars = pair.variables(sorted.vars)
 
