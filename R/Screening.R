@@ -1,18 +1,19 @@
 screen = function(data, test, epsilon){
 
   variables = unique(append(data$variable1, data$variable2))
-  # test.name = as_label(enquo(test))
 
   if (test == 'fsd' | test == 'ssd') {
-    sets = sd.screen(data, variables, test)
+    inefficient.set = sd.screen(data, variables, test)
   } else {
     eps.name = paste0(test, '.eps')
-    sets = asd.screen(data, variables, test, epsilon, eps.name)
+    inefficient.set = asd.screen(data, variables, test, epsilon, eps.name)
   }
 
+  efficient.set = setdiff(variables, inefficient.set)
+
   result = list(
-    setNames(list(sets$inefficient), paste0(test, '.inefficient')),
-    setNames(list(sets$efficient), paste0(test, '.efficient'))
+    setNames(list(inefficient.set), paste0(test, '.inefficient')),
+    setNames(list(efficient.set), paste0(test, '.efficient'))
   )
 
   return(unlist(result, recursive = F))
