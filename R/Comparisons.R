@@ -4,7 +4,7 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
 
   paired.dists = create.paired.distributions(variable, probability, outcome)
 
-  data = sd.test.all(paired.dists, include.details)
+  data = sd.asd.test.all(paired.dists, include.details)
 
   fsd = screen(data, 'fsd', 0)
   afsd = screen(data, 'afsd', afsd.epsilon.threshold)
