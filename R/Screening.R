@@ -1,13 +1,12 @@
 screen = function(data, test, epsilon.threshold){
 
-  variables = unique(append(data$variable1, data$variable2))
-
   if (test == 'fsd' | test == 'ssd') {
     inefficient.set = sd.screen(data, test)
   } else {
     inefficient.set = asd.screen(data, test, epsilon.threshold)
   }
 
+  variables = unique(append(data$variable1, data$variable2))
   efficient.set = setdiff(variables, inefficient.set)
 
   result = list(
