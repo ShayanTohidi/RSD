@@ -50,7 +50,7 @@ sd.screen = function(data, variables, test){
 #' @param epsilon A number.
 #' @param epsilon.name A string.
 #' @returns A character vector
-asd.screen = function(data, variables, test, epsilon, epsilon.name){
+asd.screen = function(data, test, epsilon, epsilon.name){
 
   asd.inefficient = data %>%
     filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon) %>%
