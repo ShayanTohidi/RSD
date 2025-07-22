@@ -5,11 +5,6 @@
 #' outcome values.
 #'
 #' @details
-#' If the type of each input parameter is incorrect, it will raise an error.
-#'
-#' The length of the input parameters must be equal, otherwise it will raise an
-#' error.
-#'
 #' Here, we first sort variables based on their outcome in ascending order, and
 #' then create unordered unique pairs. So, the first element (variable) of any
 #' pair has larger mean outcome than the second element.
