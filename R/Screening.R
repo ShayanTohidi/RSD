@@ -52,12 +52,12 @@ sd.screen = function(data, test){
 #' result valid or not.
 #' @returns A character vector.
 #'
-asd.screen = function(data, test, epsilon){
+asd.screen = function(data, test, epsilon.threshold){
 
   epsilon.name = paste0(test, '.eps')
 
   asd.inefficient = data %>%
-    filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon) %>%
+    filter(!!sym(test) == 1 & !!sym(epsilon.name) <= epsilon.threshold) %>%
     distinct(variable2) %>%
     pull(variable2)
 
