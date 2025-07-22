@@ -1,4 +1,4 @@
-screen = function(data, test, epsilon){
+screen = function(data, test, epsilon.threshold){
 
   variables = unique(append(data$variable1, data$variable2))
 
@@ -6,7 +6,7 @@ screen = function(data, test, epsilon){
     inefficient.set = sd.screen(data, variables, test)
   } else {
     eps.name = paste0(test, '.eps')
-    inefficient.set = asd.screen(data, variables, test, epsilon, eps.name)
+    inefficient.set = asd.screen(data, variables, test, epsilon.threshold, eps.name)
   }
 
   efficient.set = setdiff(variables, inefficient.set)
