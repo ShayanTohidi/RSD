@@ -20,8 +20,17 @@ screen = function(data, test, epsilon, type){
   test.name = as_label(enquo(test))
 
   if (type == 'sd') {
-    sd.screen(data, variables, test)
+    sets = sd.screen(data, variables, test)
+  } else if (type == 'asd') {
+    sets = asd.screen(data, variables, test, epsilon)
   }
+
+  result = list(
+    setNames(list(sets$inefficient), paste0(test.name, '.inefficient')),
+    setNames(list(sets$efficient), paste0(test.name, '.efficient'))
+  )
+
+  return(unlist(result, recursive = F))
 }
 
 sd.screen = function(data, test){
