@@ -6,8 +6,12 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
                        assd.ll.epsilon.threshold = 0.1,
                        assd.ths.epsilon.threshold = 0.1, include.details = TRUE){
 
-  if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome))){
-    stop("Expected types: variable (character), probability and outcome: (numeric)")
+  if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome) &
+        is.numeric(afsd.epsilon.threshold) & is.numeric(assd.ll.epsilon.threshold) &
+        is.numeric(assd.ths.epsilon.threshold) & is.logical(include.details))){
+    stop("Expected types: variable (character); probability, outcome,
+         afsd.epsilon.threshold, assd.ll.epsilon.threshold, and
+         assd.ths.epsilon.threshold: (numeric); include.details: (logical)")
   }
 
   len = length(variable)
