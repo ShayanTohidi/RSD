@@ -56,7 +56,8 @@ sort.variables = function(variable, outcome){
 #' @details
 #' These pairs are unique unordered pairs, meaning the order of variables does
 #' not matter. So if we have pair {x,y} we do not create another pair {y,x},
-#' because they are technically the same.
+#' because they are technically the same. If the number of variables is n, the
+#' number of pairs is n(n-1)/2.
 #'
 #' @param variables A character vector, including the variable names.
 #' @returns A data frame, that includes two columns; every row represents a pair
