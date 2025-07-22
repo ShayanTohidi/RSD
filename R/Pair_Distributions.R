@@ -38,11 +38,10 @@ create.paired.distributions = function(variable, probability, outcome){
     stop("All input vectors must have the same length.")
   }
 
-  org.data = create.dataframe(variable, probability, outcome)
-
   sorted.vars = sort.variables(variable, outcome)
   paired.vars = pair.variables(sorted.vars)
 
+  org.data = create.dataframe(variable, probability, outcome)
   paired.dists = pair.distributions(org.data, paired.vars)
 
   return(paired.dists)
