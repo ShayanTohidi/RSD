@@ -79,7 +79,7 @@ sd.screen = function(data, test){
 #' results of the tests.
 #' @param test A string that indicates the name of the test.
 #' @param epsilon.threshold A number that indicates the threshold for considering
-#' the result valid or not.
+#' the result to be valid or not.
 #' @returns A character vector as the inefficient set of variables based on the
 #' `test` result and `epsilon.threshold`.
 #'
