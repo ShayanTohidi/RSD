@@ -18,11 +18,11 @@
 #' @param include.details A Boolean.
 #' @returns A data frame that includes the result of tests for each pair.
 #'
-sd.test.all = function(paired.dists, include.details){
+sd.asd.test.all = function(paired.dists, include.details){
 
   result = paired.dists %>%
     rowwise() %>%
-    mutate(res = list(sd.test(data1, data2))) %>%
+    mutate(res = list(sd.asd.test(data1, data2))) %>%
     unnest_wider(res)
 
   if (!include.details) {
@@ -58,7 +58,7 @@ sd.test.all = function(paired.dists, include.details){
 #' @returns A list of 8 elements indicating the result of each test and the
 #' epsilon values for almost tests.
 #'
-sd.test = function(data1, data2){
+sd.asd.test = function(data1, data2){
 
   sd.obj = createStochasticDominance(data1$outcome, data2$outcome,
                                      data1$probability, data2$probability)
