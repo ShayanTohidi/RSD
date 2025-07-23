@@ -1,7 +1,7 @@
 Package: RSD
 Type: Package
 Title: Compares Random Distributions using Stochastic Dominance
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: c(person(given = "Shayan",
                       family = "Tohidi",
                       role = c("aut", "cre"),
