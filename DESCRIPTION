@@ -10,7 +10,8 @@ Authors@R: c(person(given = "Shayan",
                person(given = "Sigurdur",
                       family = "Olafsson",
                       role = "aut",
-                      email = "olafsson@iastate.edu"))
+                      email = "olafsson@iastate.edu",
+                      comment = c(ORCID = "0000-0002-0088-6898")))
 Maintainer: Shayan Tohidi <shayant@iastate.edu>
 Description: The Stochastic Dominance (SD) is the classical way of comparing two
     random prospects, using their distribution functions. Almost Stochastic
