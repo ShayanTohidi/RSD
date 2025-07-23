@@ -23,12 +23,7 @@ screen = function(data, test, epsilon.threshold){
   variables = unique(append(data$variable1, data$variable2))
   efficient.set = setdiff(variables, inefficient.set)
 
-  result = list(
-    setNames(list(inefficient.set), paste0(test, '.inefficient')),
-    setNames(list(efficient.set), paste0(test, '.efficient'))
-  )
-
-  return(unlist(result, recursive = F))
+  return(list(efficient = efficient.set, inefficient = inefficient.set))
 }
 
 #' Create the inefficient set by an SD rule
