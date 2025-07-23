@@ -24,7 +24,7 @@
 #'
 create.paired.distributions = function(variable, probability, outcome){
 
-  sorted.vars = sort.variables(variable, outcome)
+  sorted.vars = sorting.variables(variable, outcome)
   paired.vars = pair.variables(sorted.vars)
 
   org.data = create.dataframe(variable, probability, outcome)
@@ -58,8 +58,7 @@ create.dataframe = function(variable, probability, outcome){
 #' @returns A character vector, includes all variable names sorted by their
 #' outcomes.
 #'
-#' @method sort variables
-sort.variables = function(variable, outcome){
+sorting.variables = function(variable, outcome){
 
   df = data.frame(variable = variable, outcome = outcome)
 
