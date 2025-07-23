@@ -58,6 +58,7 @@ create.dataframe = function(variable, probability, outcome){
 #' @returns A character vector, includes all variable names sorted by their
 #' outcomes.
 #'
+#' @method sort variables
 sort.variables = function(variable, outcome){
 
   df = data.frame(variable = variable, outcome = outcome)
@@ -77,7 +78,7 @@ sort.variables = function(variable, outcome){
 #'
 #' @details
 #' These pairs are unique unordered pairs, meaning the order of variables does
-#' not matter. So if we have pair {x,y} we do not create another pair {y,x},
+#' not matter. So if we have pair \{x,y\} we do not create another pair \{y,x\},
 #' because they are technically the same. If the number of variables is n, the
 #' number of pairs is n(n-1)/2.
 #'
