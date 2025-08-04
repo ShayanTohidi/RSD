@@ -24,15 +24,15 @@
 #' @param outcome A numeric vector containing the outcome values.
 #' @param afsd.epsilon.threshold A number that shows the upper limit for epsilon
 #' of afsd rule. If the epsilon is smaller than or equal to this value, the result
-#' is accepted.
+#' is accepted. The default value is `0.1`.
 #' @param assd.ll.epsilon.threshold A number that shows the upper limit for epsilon
 #' of assd.ll rule. If the epsilon is smaller than or equal to this value, the result
-#' is accepted.
+#' is accepted. The default value is `0.1`.
 #' @param assd.ths.epsilon.threshold A number that shows the upper limit for epsilon
 #' of assd.ths rule. If the epsilon is smaller than or equal to this value, the result
-#' is accepted.
+#' is accepted. The default value is `0.1`.
 #' @param include.details A logical that affects the output data to contain
-#' distributions.
+#' distributions. The default value is `TRUE`.
 #' @returns A list of 6 elements, including a data frame and the efficient and
 #' inefficient sets of all rules.
 #' @examples
