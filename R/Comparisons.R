@@ -7,9 +7,6 @@
 #' @details
 #' If the type of each input parameter is incorrect, it will raise an error.
 #'
-#' The length of the input parameters `variable`, `probability`, and `outcome`
-#' must be equal, otherwise it will raise an error.
-#'
 #' The output is a list that contains 6 elements: `data` is a data frame including
 #' all unique unordered pairs of variables, corresponding distributions, result
 #' of each rule, and epsilon of ASD rule. The rest 5 elements are lists as well,
