@@ -106,6 +106,26 @@ compare.paired.distributions = function(variable, probability, outcome,
   return(data)
 }
 
+#' Screening by all SD rules
+#'
+#' It checks all available SD rules (i.e. fsd and ssd) based on their results,
+#' and creates the corresponding efficient and inefficient sets.
+#'
+#' @details
+#' The input parameter `data` must contain columns corresponding to SD rules.
+#' These columns contain the index of the dominated variable, where 1 or 2 means
+#' the first or the second variable dominates, and 0 means the domination does
+#' not exist. The best practice is to use the output of `compare.paired.distributions`.
+#'
+#' @seealso [screen()]
+#'
+#' @param data A data frame, including the results of all SD rules.
+#' @returns A list, including two elements corresponding to each SD rule.
+#' @examples
+#' data = compare.paired.distributions(data_ex$gen, rep(1/29,377), data_ex$yield)
+#' sd.sets = screen.by.sd(data)
+#'
+#' @export
 screen.by.sd = function(data){
 
   fsd = screen(data, 'fsd', 0)
