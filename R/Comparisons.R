@@ -58,9 +58,9 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
   asd = screen.by.asd(data, afsd.epsilon.threshold, assd.ll.epsilon.threshold,
                       assd.ths.epsilon.threshold)
 
-  return(list(data = data, fsd.sets = sd$fsd, afsd.sets = asd$afsd,
-              ssd.sets = sd$ssd, assd.ll.sets = asd$assd.ll,
-              assd.ths.sets = asd$assd.ths))
+  return(list(data = data, fsd.sets = sd$fsd.sets, afsd.sets = asd$afsd.sets,
+              ssd.sets = sd$ssd.sets, assd.ll.sets = asd$assd.ll.sets,
+              assd.ths.sets = asd$assd.ths.sets))
 }
 
 compare.paired.distributions = function(variable, probability, outcome,
