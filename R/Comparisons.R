@@ -134,6 +134,37 @@ screen.by.sd = function(data){
   return(list(fsd.sets = fsd, ssd.sets = ssd))
 }
 
+#' Screening by all ASD rules
+#'
+#' It checks all available ASD rules (i.e. afsd, assd.ll, and assd.ths) based on
+#' their results, and creates the corresponding efficient and inefficient sets.
+#'
+#' @details
+#' The input parameter `data` must contain columns corresponding to ASD rules.
+#' These columns contain the index of the dominated variable, where 1 or 2 means
+#' the first or the second variable dominates, and 0 means the domination does
+#' not exist. Also, corresponding to each rule, we must have a column that
+#' includes the epsilon values for each rule. The best practice is to use the
+#' output of `compare.paired.distributions`.
+#'
+#' @seealso [screen()]
+#'
+#' @param data A data frame, including the results of all ASD rules.
+#' @param afsd.epsilon.threshold A number that shows the upper limit for epsilon
+#' of afsd rule. If the epsilon is smaller than or equal to this value, the result
+#' is accepted. The default value is `0.1`.
+#' @param assd.ll.epsilon.threshold A number that shows the upper limit for epsilon
+#' of assd.ll rule. If the epsilon is smaller than or equal to this value, the result
+#' is accepted. The default value is `0.1`.
+#' @param assd.ths.epsilon.threshold A number that shows the upper limit for epsilon
+#' of assd.ths rule. If the epsilon is smaller than or equal to this value, the result
+#' is accepted. The default value is `0.1`.
+#' @returns A list, including three elements corresponding to each ASD rule.
+#' @examples
+#' data = compare.paired.distributions(data_ex$gen, rep(1/29,377), data_ex$yield)
+#' asd.sets = screen.by.asd(data)
+#'
+#' @export
 screen.by.asd = function(data, afsd.epsilon.threshold = 0.1,
                          assd.ll.epsilon.threshold = 0.1,
                          assd.ths.epsilon.threshold = 0.1){
