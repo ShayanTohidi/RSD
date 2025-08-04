@@ -19,7 +19,7 @@
 #' in a single cell. The distribution contains two columns: probability and
 #' outcome.
 #'
-#' @seealso [create.paired.distributions(), sd.asd.test.all(), screen()]
+#' @seealso [compare.paired.distributions(), screen.by.sd(), screen.by.asd()]
 #'
 #' @param variable A character vector containing the name of all variables.
 #' @param probability A numeric vector containing the probability for each
