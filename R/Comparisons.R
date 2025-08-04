@@ -92,8 +92,9 @@ screen.by.sd = function(data){
   return(list(fsd = fsd, ssd = ssd))
 }
 
-screen.by.asd = function(data, afsd.epsilon.threshold, assd.ll.epsilon.threshold,
-                         assd.ths.epsilon.threshold){
+screen.by.asd = function(data, afsd.epsilon.threshold = 0.1,
+                         assd.ll.epsilon.threshold = 0.1,
+                         assd.ths.epsilon.threshold = 0.1){
 
   afsd = screen(data, 'afsd', afsd.epsilon.threshold)
   assd.ll = screen(data, 'assd.ll', assd.ll.epsilon.threshold)
