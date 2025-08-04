@@ -73,3 +73,24 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
   return(list(data = data, fsd.sets = fsd, afsd.sets = afsd,
               ssd.sets = ssd, assd.ll.sets = assd.ll, assd.ths.sets = assd.ths))
 }
+
+compare.paired.distributions = function(variable, probability, outcome,
+                                      include.details){
+
+  if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome) &
+        is.logical(include.details))){
+    stop("Expected types: variable (character); probability, outcome,
+         include.details: (logical)")
+  }
+
+  len = length(variable)
+  if (length(probability) != len | length(outcome) != len) {
+    stop("All input vectors must have the same length.")
+  }
+
+  paired.dists = create.paired.distributions(variable, probability, outcome)
+
+  data = sd.asd.test.all(paired.dists, include.details)
+
+  return(data)
+}
