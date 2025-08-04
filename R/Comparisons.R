@@ -63,6 +63,18 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
               assd.ths.sets = asd$assd.ths.sets))
 }
 
+#' Creating paired distributions and execute all SD and ASD rules on them
+#'
+#' It creates a data frame including all unordered pairs of the variables, where
+#' the first variable has higher or equal mean outcome. Then, all available SD
+#' and ASD rules are tested on them.
+#'
+#' @details
+#' If the type of each input parameter is incorrect, it will raise an error.
+#'
+#' The length of the input parameters `variable`, `probability`, and `outcome`
+#' must be equal, otherwise it will raise an error.
+#'
 compare.paired.distributions = function(variable, probability, outcome,
                                       include.details = TRUE){
 
@@ -78,7 +90,6 @@ compare.paired.distributions = function(variable, probability, outcome,
   }
 
   paired.dists = create.paired.distributions(variable, probability, outcome)
-
   data = sd.asd.test.all(paired.dists, include.details)
 
   return(data)
