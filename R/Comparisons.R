@@ -54,15 +54,13 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
 
   data = compare.paired.distributions(variable, probability, outcome, include.details)
 
-  fsd = screen(data, 'fsd', 0)
-  afsd = screen(data, 'afsd', afsd.epsilon.threshold)
-  ssd = screen(data, 'ssd', 0)
-  assd.ll = screen(data, 'assd.ll', assd.ll.epsilon.threshold)
-  assd.ths = screen(data, 'assd.ths', assd.ths.epsilon.threshold)
+  sd = screen.by.sd(data)
+  asd = screen.by.asd(data, afsd.epsilon.threshold, assd.ll.epsilon.threshold,
+                      assd.ths.epsilon.threshold)
 
-
-  return(list(data = data, fsd.sets = fsd, afsd.sets = afsd,
-              ssd.sets = ssd, assd.ll.sets = assd.ll, assd.ths.sets = assd.ths))
+  return(list(data = data, fsd.sets = sd$fsd, afsd.sets = asd$afsd,
+              ssd.sets = sd$ssd, assd.ll.sets = asd$assd.ll,
+              assd.ths.sets = asd$assd.ths))
 }
 
 compare.paired.distributions = function(variable, probability, outcome,
@@ -84,4 +82,22 @@ compare.paired.distributions = function(variable, probability, outcome,
   data = sd.asd.test.all(paired.dists, include.details)
 
   return(data)
+}
+
+screen.by.sd = function(data){
+
+  fsd = screen(data, 'fsd', 0)
+  ssd = screen(data, 'ssd', 0)
+
+  return(list(fsd = fsd, ssd = ssd))
+}
+
+screen.by.asd = function(data, afsd.epsilon.threshold, assd.ll.epsilon.threshold,
+                         assd.ths.epsilon.threshold){
+
+  afsd = screen(data, 'afsd', afsd.epsilon.threshold)
+  assd.ll = screen(data, 'assd.ll', assd.ll.epsilon.threshold)
+  assd.ths = screen(data, 'assd.ths', assd.ths.epsilon.threshold)
+
+  return(list(afsd = afsd, assd.ll = assd.ll, assd.ths = assd.ths))
 }
