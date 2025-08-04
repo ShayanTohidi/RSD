@@ -46,22 +46,13 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
                        assd.ll.epsilon.threshold = 0.1,
                        assd.ths.epsilon.threshold = 0.1, include.details = TRUE){
 
-  if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome) &
-        is.numeric(afsd.epsilon.threshold) & is.numeric(assd.ll.epsilon.threshold) &
-        is.numeric(assd.ths.epsilon.threshold) & is.logical(include.details))){
-    stop("Expected types: variable (character); probability, outcome,
-         afsd.epsilon.threshold, assd.ll.epsilon.threshold, and
-         assd.ths.epsilon.threshold: (numeric); include.details: (logical)")
+  if (!(is.numeric(afsd.epsilon.threshold) & is.numeric(assd.ll.epsilon.threshold) &
+        is.numeric(assd.ths.epsilon.threshold))){
+    stop("Expected types: afsd.epsilon.threshold, assd.ll.epsilon.threshold, and
+         assd.ths.epsilon.threshold: (numeric)")
   }
 
-  len = length(variable)
-  if (length(probability) != len | length(outcome) != len) {
-    stop("All input vectors must have the same length.")
-  }
-
-  paired.dists = create.paired.distributions(variable, probability, outcome)
-
-  data = sd.asd.test.all(paired.dists, include.details)
+  data = compare.paired.distributions(variable, probability, outcome, include.details)
 
   fsd = screen(data, 'fsd', 0)
   afsd = screen(data, 'afsd', afsd.epsilon.threshold)
