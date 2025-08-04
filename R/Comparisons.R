@@ -64,7 +64,7 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
 }
 
 compare.paired.distributions = function(variable, probability, outcome,
-                                      include.details){
+                                      include.details = TRUE){
 
   if (!(is.character(variable) & is.numeric(probability) & is.numeric(outcome) &
         is.logical(include.details))){
