@@ -72,6 +72,20 @@ compare.all = function(variable, probability, outcome, afsd.epsilon.threshold = 
 #' The length of the input parameters `variable`, `probability`, and `outcome`
 #' must be equal, otherwise it will raise an error.
 #'
+#' @seealso [create.paired.distributions(), sd.asd.test.all()]
+#'
+#' @param variable A character vector containing the name of all variables.
+#' @param probability A numeric vector containing the probability for each
+#' variable to achieve a particular outcome.
+#' @param outcome A numeric vector containing the outcome values.
+#' @param include.details A logical that affects the output data to contain
+#' distributions. The default value is `TRUE`.
+#' @returns A data frame, including all distribution pairs and the results of
+#' the tests.
+#' @examples
+#' result = compare.paired.distributions(data_ex$gen, rep(1/29,377), data_ex$yield)
+#'
+#' @export
 compare.paired.distributions = function(variable, probability, outcome,
                                       include.details = TRUE){
 
