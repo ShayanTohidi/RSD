@@ -257,7 +257,7 @@ ssd.plot(pair, names = c('Bienvenu', 'Dwarf')) +
 
 # Pipeline
 
-Until now, we have been using our package to perform comparison between only two distributions. Here we are going to present a way for ranking all distributions in a real-world data set. We use `data_ex` in this section.
+Until now, we have been using our package to perform comparison between only two distributions. Here we are going to present a way for ranking all distributions in a real-world data set. We use `data_ex` in this section as well.
 
 To perform this task, we call `compare.all` function. This function helps us to create all unique unordered pairs of variables (cultivars in this data set) and the corresponding distributions, perform all SD and ASD rules, and build efficient and inefficient sets for each pair by each rule.
 
