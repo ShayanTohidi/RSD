@@ -218,7 +218,15 @@ This example shows the importance of ASD as a powerful complementary to the clas
 
 ## `shafii.rapeseed`
 
-Another example is provided from `agridat` package named `shafii.rapeseed`, which is a multi-environmental trial of rapeseed in the U.S. and includes 6 cultivars (genotypes) planted in 14 locations and 3 years having 3 replications. Obviously. this data set is not complete, because all cultivars are not planted in all environments (combination of location and year).
+Another example is provided from `agridat` package named `shafii.rapeseed`, which is a multi-environmental trial of rapeseed in the U.S. and includes 6 cultivars (genotypes) planted in 14 locations and 3 years having 3 replications. The environment (column `env`) can be defined as the combination of year and location (columns `year` and `loc`), respectively. Then, the variability inside each group of cultivars and environments are discarded by averaging out the replications (column `rep`). In this case, these steps make the data set complete, meaning all cultivars are planted in all environments. These steps are showing below.
+
+```{r}
+data = shafii.rapeseed %>%
+  unite(year, loc, col = 'env') %>%
+  group_by(gen, env) %>%
+  summarise(yield = mean(yield), .groups = 'drop')
+```
+
 
 # Pipeline
 
