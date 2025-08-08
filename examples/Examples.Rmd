@@ -290,46 +290,6 @@ result$afsd.sets$efficient
 
 According the results above, we observe that the efficient set of AFSD rule has two less cultivars. It means that none of the eight cultivars in the first efficient set, dominates the other ones by FSD. It is also true for the six cultivars in the second efficient set captured by AFSD. In other words, there is at least one cultivar out of these six cultivars that dominates the other two (PHW52/PHM49 and LH74/PHN82) by AFSD with epsilon smaller than 0.1. It shows when we consider all decision makers with all utility functions, there exist someone who pick one of these two cultivars, however they can be ignored because it is rare to observe them in reality or in other word, their utility functions are extreme. In most cases, an ASD rule shrinks the size of the efficient set, which makes deciding easier and this is why decision-makers tend to apply ASD and SD rules together.
 
-which is a benefit of using ASD rules compared to SD rules. The
-
-Below, we define a function, `sd.test`, that creates a pipeline for comparing two distributions. For simplicity, we only put the winner indexes as the output parameters. All the other output parameters of the inner functions can be used as well.
-
-```{r}
-sd.test = function(cultivar1, cultivar2, df, prob1, prob2){
-  
-  outcome1 = df$yield[df$gen == cultivar1]
-  outcome2 = df$yield[df$gen == cultivar2]
-  
-  sd.obj = createStochasticDominance(outcome1, outcome2, prob1, prob2)
-  fsd = fsd.test(sd.obj)
-  ssd = ssd.test(sd.obj)
-  afsd = afsd.test(sd.obj)
-  assd.ll = assd.test(sd.obj, 'll')
-  assd.ths = assd.test(sd.obj, 'ths')
-  return(list(fsd = fsd, ssd = ssd, afsd = afsd$winner,
-              assd.ll = assd.ll$winner, assd.ths = assd.ths$winner))
-}
-```
-
-The following lines are used to create a raw data set containing all unique pairs of cultivars. Then, a vectorized implementation is used to apply the `sd.test` function on all pairs in that data set to get the results.
-
-```{r}
-m = length(unique(data_ex$env))
-pr = rep(1/m, m)
-cultivars = unique(data_ex$gen)
-n = length(cultivars)
-data = data.frame(cultivars1 = cultivars[rep(1:(n-1), (n-1):1)],
-                  cultivars2 = cultivars[unlist(sapply(seq(2,n),
-                                                       function(x) seq(x,n)))])
-
-result = data %>%
-  group_by(cultivars1, cultivars2) %>% 
-  mutate(res = list(sd.test(cultivars1, cultivars2, data_ex,pr, pr))) %>% 
-  unnest_wider(res)
-
-result
-```
-
 # Conclusion
 
 The `RSD` package can be used in research and business to compare and rank distributions using stochastic dominance (SD) and almost stochastic dominance (ASD). This package uses exact methods to implement the SD and ASD rules without any estimation because we focus on using discrete distributions instead of continuous ones that have to be sampled. So, the results is reliable. In addition, the algorithms are developed in a way to use vectorized implementation, and have $\mathcal{O}(n)$ in the worst case scenarios. Thus, the functions are efficient and effective even in large data sets.
