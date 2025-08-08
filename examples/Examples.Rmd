@@ -14,6 +14,7 @@ library(dplyr)
 library(tidyr)
 library(tinytex)
 library(agridat)
+library(ggplot2)
 # tinytex::install_tinytex()
 ```
 
@@ -218,13 +219,39 @@ This example shows the importance of ASD as a powerful complementary to the clas
 
 ## `shafii.rapeseed`
 
-Another example is provided from `agridat` package named `shafii.rapeseed`, which is a multi-environmental trial of rapeseed in the U.S. and includes 6 cultivars (genotypes) planted in 14 locations and 3 years having 3 replications. The environment (column `env`) can be defined as the combination of year and location (columns `year` and `loc`), respectively. Then, the variability inside each group of cultivars and environments are discarded by averaging out the replications (column `rep`). In this case, these steps make the data set complete, meaning all cultivars are planted in all environments. These steps are showing below.
+Another example is provided from `agridat` package named `shafii.rapeseed`, which is a multi-environmental trial of rapeseed in the U.S. and includes 6 cultivars (genotypes) planted in 14 locations and 3 years having 3 replications. The environment (column `env`) can be defined as the combination of year and location (columns `year` and `loc`), respectively. Then, the variability inside each group of cultivars and environments are discarded by averaging out the replications (column `rep`). In this case, these steps make the data set complete, meaning all cultivars (6) are planted in all environments (27). These steps are showing below.
 
 ```{r}
-data = shafii.rapeseed %>%
+df = shafii.rapeseed %>%
   unite(year, loc, col = 'env') %>%
   group_by(gen, env) %>%
   summarise(yield = mean(yield), .groups = 'drop')
+```
+
+The list of all cultivars is shown below.
+
+```{r}
+cultivars = unique(df$gen)
+cultivars
+```
+
+Now, suppose we want to perform comparison between Bienvenu and Dwarf, which are the first and fourth in the list of cultivars.
+
+```{r}
+pr = rep(1/27, 27)
+y1 = df$yield[df$gen == cultivars[1]]
+y2 = df$yield[df$gen == cultivars[4]]
+pair = createStochasticDominance(y1, y2, pr, pr)
+```
+
+Applying `fsd.test` and `ssd.test` functions, it can be seen that the first cultivar dominates by SSD, and not FSD. Below, we shows how to modify the plots based on your preferences.
+
+```{r}
+fsd.plot(pair, names = c('Bienvenu', 'Dwarf')) +
+  labs(x = 'Yield', y = 'CDF', color = 'Cultivar')
+
+ssd.plot(pair, names = c('Bienvenu', 'Dwarf')) +
+  labs(x = 'Yield', y = 'Integral of CDF', color = 'Cultivar')
 ```
 
 
