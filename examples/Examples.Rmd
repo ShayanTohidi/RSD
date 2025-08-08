@@ -244,7 +244,7 @@ y2 = df$yield[df$gen == cultivars[4]]
 pair = createStochasticDominance(y1, y2, pr, pr)
 ```
 
-Applying `fsd.test` and `ssd.test` functions, it can be seen that the first cultivar dominates by SSD, and not FSD. Below, we shows how to modify the plots based on your preferences.
+Applying `fsd.test` and `ssd.test` functions, it can be seen that Bienvenu dominates by SSD, and not FSD. Below, we shows the plots and how they can be modified.
 
 ```{r}
 fsd.plot(pair, names = c('Bienvenu', 'Dwarf')) +
