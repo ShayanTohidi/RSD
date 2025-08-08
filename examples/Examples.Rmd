@@ -257,7 +257,40 @@ ssd.plot(pair, names = c('Bienvenu', 'Dwarf')) +
 
 # Pipeline
 
-Until now, we have been using our package to perform comparison between only two distributions. Here we are going to present a way for ranking all distributions in a real-world data set. The data set is the same as the previous section.
+Until now, we have been using our package to perform comparison between only two distributions. Here we are going to present a way for ranking all distributions in a real-world data set. We use `data_ex` in this section.
+
+To perform this task, we call `compare.all` function. This function helps us to create all unique unordered pairs of variables (cultivars in this data set) and the corresponding distributions, perform all SD and ASD rules, and build efficient and inefficient sets for each pair by each rule.
+
+The required input parameters are a character vector for variable names, and two numeric vectors for probability and outcome. This information is needed to define all discrete distribution functions. Also, three input parameters can be set to determine the epsilon thresholds for ASD rules. Finally, a Boolean parameter `include.details` is set to specify whether the returned data set has to include distribution information (probability and outcome).
+
+```{r}
+result = compare.all(variable = data_ex$gen, probability = rep(1/29, 377),
+                     outcome = data_ex$yield, include.details = F)
+```
+
+This function wraps three other functions included inside this package: `compare.paired.distributions`, `screen.by.sd`, and `screen.by.asd`. Each of these functions might be called independently to perform some particular tasks. The details of all these functions are presented in package document.
+
+Below, the data set that contains all cultivar pairs alongside with the index of dominated cultivar for every rules and epsilon values for every ASD rules.
+
+```{r}
+result$data
+```
+
+In addition, `result` contains other elements where they includes efficient and inefficient sets for this data set by applying each SD or ASD rule. Below, the efficient set of the cultivars based on FSD rule is shown.
+
+```{r}
+result$fsd.sets$efficient
+```
+
+And here, the efficient set of the cultivars based on AFSD rule when its epsilon threshold is set to 0.1 is shown.
+
+```{r}
+result$afsd.sets$efficient
+```
+
+According the results above, we observe that the efficient set of AFSD rule has two less cultivars. It means that none of the eight cultivars in the first efficient set, dominates the other ones by FSD. It is also true for the six cultivars in the second efficient set captured by AFSD. In other words, there is at least one cultivar out of these six cultivars that dominates the other two (PHW52/PHM49 and LH74/PHN82) by AFSD with epsilon smaller than 0.1. It shows when we consider all decision makers with all utility functions, there exist someone who pick one of these two cultivars, however they can be ignored because it is rare to observe them in reality or in other word, their utility functions are extreme. In most cases, an ASD rule shrinks the size of the efficient set, which makes deciding easier and this is why decision-makers tend to apply ASD and SD rules together.
+
+which is a benefit of using ASD rules compared to SD rules. The
 
 Below, we define a function, `sd.test`, that creates a pipeline for comparing two distributions. For simplicity, we only put the winner indexes as the output parameters. All the other output parameters of the inner functions can be used as well.
 
